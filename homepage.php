@@ -38,20 +38,20 @@
             <!-- PRODUCTS SECTION -->
             <section class="product-grid">
                 <div class="product-card">
-                    <img src="hotwheels_super_speedster.jpg" alt="Hot Wheels Super Speedster" style="width:100%;">
-                    <h3>Hot Wheels Car</h3>
+                    <img src="https://i.ebayimg.com/images/g/VgcAAeSwunZnoqL~/s-l960.webp" alt="Hot Wheels Super Speedster" style="width:100%;">
+                    <h3>Hot Wheels 1997 FE Lamborghini Countach Yellow 25th Ann.</h3>
                     <button class="btn">View Details</button>
                     <button class="btn buy-btn">Buy</button>
                 </div>
                 <div class="product-card">
-                    <img src="car2.jpg" alt="Hot Wheels Car">
-                    <h3>Classic Racer</h3>
+                    <img src="https://i.ebayimg.com/images/g/iYcAAeSwCPtno9af/s-l960.webp" alt="Hot Wheels Car">
+                    <h3>Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP</h3>
                     <button class="btn">View Details</button>
                     <button class="btn buy-btn">Buy</button>
                 </div>
                 <div class="product-card">
-                    <img src="car3.jpg" alt="Hot Wheels Car">
-                    <h3>Offroad Monster</h3>
+                    <img src="https://i.ebayimg.com/images/g/6DoAAeSwQ71npOES/s-l960.webp" alt="Hot Wheels Car">
+                    <h3>Hot Wheels 2000 Lamborghini Diablo Blue 5DOT Virtual Cars</h3>
                     <button class="btn">View Details</button>
                     <button class="btn buy-btn">Buy</button>
                 </div>
