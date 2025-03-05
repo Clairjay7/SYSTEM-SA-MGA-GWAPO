@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <h1>Hapart for Speed</h1>
+        <h1>Hapart 4 Speed</h1>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Shop</a></li>
