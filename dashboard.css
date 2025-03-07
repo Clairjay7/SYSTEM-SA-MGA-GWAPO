@@ -159,6 +159,7 @@
     background: #0057b8;
     color: white;
 }
+
 .cart-container {
     text-align: center;
     margin-top: 20px;
@@ -196,4 +197,54 @@
     color: white;
     border: none;
     cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN FIXES */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .dashboard-buttons {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .dashboard-buttons button {
+        width: 45%;
+    }
+
+    .product-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 90%;
+    }
+}
+
+/* BUTTON INTERACTIVITY */
+button {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+button:hover {
+    filter: brightness(90%);
 }
