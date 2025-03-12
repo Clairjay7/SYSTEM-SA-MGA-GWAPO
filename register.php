@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php'; // Connect to the database
+require_once 'connect.php';'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signUp"])) {
     $username = trim($_POST['username']);

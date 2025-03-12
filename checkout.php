@@ -68,10 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="name" name="name" required>
             </div>
 
-            <!-- Shipping Address Input -->
+            <!-- Shipping Address Input (Fixed) -->
             <div class="form-group">
                 <label for="address">Shipping Address:</label>
-                <textarea id="address" name="address" required></textarea>
+                <input type="text" id="address" name="address" required>
             </div>
 
             <!-- Payment Method Dropdown -->

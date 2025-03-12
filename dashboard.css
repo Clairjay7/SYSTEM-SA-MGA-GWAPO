@@ -3,10 +3,26 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background: #0057b8;
+    background: url('123.png') no-repeat center center;
+    background-size: cover;
     color: white;
 }
 
+/* REMOVE SOLID BACKGROUND COLOR FOR LOGO */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+.logo {
+    width: auto; /* Para hindi ma-stretch */
+    height: 80px; /* Palitan ito para sa desired size */
+    margin-right: 40px;
+    background: transparent;
+    display: block; /* Siguradong hindi maapektuhan ng flex properties ng navbar */
+}
+
+
+/* STYLING FOR NAVIGATION LINKS */
 .navbar ul {
     list-style: none;
     display: flex;
@@ -21,8 +37,12 @@
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
+    padding: 8px 15px;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+    border-radius: 5px;
 }
 
+/* DASHBOARD STYLES */
 .dashboard-container {
     display: flex;
 }
@@ -47,6 +67,7 @@
     cursor: pointer;
 }
 
+/* MAIN CONTENT */
 .main-content {
     flex: 1;
     padding: 20px;
@@ -58,6 +79,7 @@
     margin-bottom: 30px;
 }
 
+/* PRODUCT GRID */
 .product-grid {
     display: flex;
     justify-content: center;
@@ -80,7 +102,7 @@
     justify-content: space-between;
 }
 
-/* UPDATED IMAGE SIZE */
+/* PRODUCT IMAGE */
 .product-card img {
     width: 100%;
     height: 320px;
@@ -102,6 +124,7 @@
     margin: 5px 0;
 }
 
+/* BUTTON STYLES */
 .button-container {
     display: flex;
     justify-content: center;
@@ -129,6 +152,7 @@
     background: #28a745;
 }
 
+/* INVENTORY SECTION */
 .inventory-section {
     margin-top: 30px;
     padding: 20px;
@@ -160,6 +184,7 @@
     color: white;
 }
 
+/* CART STYLES */
 .cart-container {
     text-align: center;
     margin-top: 20px;
@@ -199,7 +224,7 @@
     cursor: pointer;
 }
 
-/* RESPONSIVE DESIGN FIXES */
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -247,4 +272,9 @@ button {
 
 button:hover {
     filter: brightness(90%);
+}
+.theme-heading {
+    font-family: 'Arial Black', sans-serif;
+    font-weight: bold;
+    color: #000; /* Black text */
 }
