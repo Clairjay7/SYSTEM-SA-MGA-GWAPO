@@ -1,57 +1,60 @@
 <?php
 session_start();
-require_once 'connect.php';; // Ensure DB connection
+require_once 'connect.php';
 
-// DELETE user
-if (isset($_GET['delete'])) {
-    $id = intval($_GET['delete']);
-    $conn->query("DELETE FROM users WHERE id = $id");
-    $_SESSION['success'] = "User deleted successfully!";
+// Get user data
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+    $result = $conn->query("SELECT * FROM users WHERE id = $id");
+    $user = $result->fetch_assoc();
+}
+
+// Update user data
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $id = intval($_POST['id']);
+
+    $conn->query("UPDATE users SET username='$username', email='$email' WHERE id=$id");
+    $_SESSION['success'] = "User updated successfully!";
     header("Location: manageUsers.php");
     exit();
 }
-
-// FETCH users
-$result = $conn->query("SELECT id, username, email, created_at FROM users");
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Manage Users</title>
-    <link rel="stylesheet" href="manageUsers.css">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="updateUser.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>Manage Users</h1>
-
-    <?php if (isset($_SESSION['success'])): ?>
-        <p style="color: green;"> <?php echo $_SESSION['success']; unset($_SESSION['success']); ?> </p>
-    <?php endif; ?>     
-
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Created At</th>
-            <th>Actions</th>
-        </tr>
-        <?php while ($user = $result->fetch_assoc()): ?>
-            <tr>
-                <td><?= $user['id']; ?></td>
-                <td><?= htmlspecialchars($user['username']); ?></td>
-                <td><?= htmlspecialchars($user['email']); ?></td>
-                <td><?= $user['created_at']; ?></td>
-                <td>
-                    <a href="updateUser.php?id=<?= $user['id']; ?>">Edit</a>
-                    <a href="manageUsers.php?delete=<?= $user['id']; ?>" onclick="return confirm('Are you sure?');">Delete</a>
-                </td>
-            </tr>
-        <?php endwhile; ?>
-    </table>
-
-    <br>
-    <a href="homepage.php">Back to Dashboard</a>
+    <div class="container">
+        <h2>Edit User</h2>
+        <form method="POST">
+            <input type="hidden" name="id" value="<?= $user['id']; ?>">
+            <label>Username: <input type="text" name="username" value="<?= $user['username']; ?>" required></label><br>
+            <label>Email: <input type="email" name="email" value="<?= $user['email']; ?>" required></label><br>
+            <button type="submit">Update User</button>
+        </form>
+        <a href="manageUsers.php">Back to Manage Users</a>
+    </div>
 </body>
 </html>
