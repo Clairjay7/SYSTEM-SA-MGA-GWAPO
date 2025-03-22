@@ -61,7 +61,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="product-card">
                     <img src="https://i.ebayimg.com/images/g/iYcAAeSwCPtno9af/s-l960.webp" alt="Hot Wheels Car">
                     <h3>Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP</h3>
-                    <p class="product-price">$15.75</p>
+                    <p class="product-price">$1000.75</p>
                     <div class="button-container">
                         <button class="btn view-details">View Details</button>
                         <button class="btn buy-button">Buy</button>
@@ -70,7 +70,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="product-card">
                     <img src="https://i.ebayimg.com/images/g/6DoAAeSwQ71npOES/s-l960.webp" alt="Hot Wheels Car">
                     <h3>Hot Wheels 2000 Lamborghini Diablo Blue 5DOT Virtual Cars</h3>
-                    <p class="product-price">$15.75</p>
+                    <p class="product-price">$555.75</p>
                     <div class="button-container">
                         <button class="btn view-details">View Details</button>
                         <button class="btn buy-button">Buy</button>
@@ -79,7 +79,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="product-card">
                     <img src="https://i.ebayimg.com/images/g/9w8AAeSwIIZnyFvK/s-l960.webp" alt="Hot Wheels Car">
                     <h3>2023 Hot Wheels DC Batmobile 103/250 1:64 Diecast Car White Batman Series 3/5</h3>
-                    <p class="product-price">$15.75</p>
+                    <p class="product-price">$111.75</p>
                     <div class="button-container">
                         <button class="btn view-details">View Details</button>
                         <button class="btn buy-button">Buy</button>
