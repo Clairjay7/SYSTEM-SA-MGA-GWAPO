@@ -52,7 +52,7 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="product-card">
                     <img src="https://i.ebayimg.com/images/g/VgcAAeSwunZnoqL~/s-l960.webp" alt="Hot Wheels Car">
                     <h3>Hot Wheels 1997 FE Lamborghini Countach Yellow 25th Ann.</h3>
-                    <p class="product-price">$15.75</p>
+                    <p class="product-price">$100.75</p>
                     <div class="button-container">
                         <button class="btn view-details">View Details</button>
                         <button class="btn buy-button">Buy</button>
