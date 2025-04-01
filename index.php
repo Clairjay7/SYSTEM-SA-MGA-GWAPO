@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once 'connect.php';; // Database connection
+require_once 'connect.php'; // Database connection
 include 'functions.php'; // CRUD functions
 
-// Handle login
+// Handle regular user login
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signIn'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -14,14 +14,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signIn'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['success'] = 'Login successful!';
-        header('Location: homepage.php');
-        exit();
+        
+        // Check if the user is a staff member
+        if ($user['role'] == 'staff') {
+            // Redirect to staff dashboard if staff login
+            header('Location: staff_dashboard.php');
+            exit();
+        } else {
+            // Redirect to homepage for regular users
+            header('Location: homepage.php');
+            exit();
+        }
     } else {
         $_SESSION['error'] = 'Invalid email or password!';
     }
 }
 
-// Handle registration
+// Handle user registration
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signUp'])) {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
@@ -80,6 +89,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signUp'])) {
         <p class="or">----------or--------</p>
         <div class="links">
             <button id="signUpButton">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Staff Sign In Form (Separate for Staff) -->
+    <div class="container" id="staffSignIn" style="display: none;">
+        <h1 class="form-title">Staff Sign In</h1>
+        
+        <?php if (isset($_SESSION['error'])): ?>
+            <p class="error-message"> <?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?> </p>
+        <?php endif; ?>
+
+        <form method="post" action="">
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Staff Email" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <input type="submit" class="btn" value="Staff Sign In" name="signIn">
+        </form>
+        <p class="or">----------or--------</p>
+        <div class="links">
+            <button id="signInButton">Back to User Sign In</button>
         </div>
     </div>
 
