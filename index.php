@@ -1,53 +1,34 @@
 <?php
-session_start();
-require_once 'connect.php'; // Database connection
-include 'functions.php'; // CRUD functions
+session_start(); // Start the session at the very beginning
 
-// Handle regular user login
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signIn'])) {
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+include('connect.php'); // Make sure your updated database connection file is correctly included
 
-    $user = getUserByEmail($conn, $email);
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['success'] = 'Login successful!';
-        
-        // Check if the user is a staff member
-        if ($user['role'] == 'staff') {
-            // Redirect to staff dashboard if staff login
-            header('Location: staff_dashboard.php');
-            exit();
-        } else {
-            // Redirect to homepage for regular users
-            header('Location: homepage.php');
-            exit();
-        }
-    } else {
-        $_SESSION['error'] = 'Invalid email or password!';
-    }
+// Check if the user is already logged in (either as admin or as a guest)
+if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])) {
+    // Redirect to homepage if logged in as an admin or a guest
+    header("Location: homepage.php");
+    exit();
 }
 
-// Handle user registration
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signUp'])) {
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+// If "Continue as Guest" is clicked, start the guest session
+if (isset($_GET['guest'])) {
+    // Start the guest session
+    $_SESSION['guest'] = true;
 
-    if (userExists($conn, $email, $username)) {
-        $_SESSION['error'] = 'Email or username already taken!';
-        header('Location: index.php');
-        exit();
-    }
+    // Generate a unique session ID for the guest
+    $guest_session_id = session_id();
 
-    if (createUser($conn, $username, $email, $password)) {
-        $_SESSION['success'] = 'Registration successful! You can now log in.';
-        header('Location: index.php');
+    try {
+        // Insert the guest session into the database using PDO
+        $stmt = $pdo->prepare("INSERT INTO guest_sessions (session_id) VALUES (:session_id)");
+        $stmt->execute([':session_id' => $guest_session_id]); // Use execute() to bind the session ID
+
+        // Redirect to homepage after successful guest login
+        header("Location: homepage.php");
         exit();
-    } else {
-        $_SESSION['error'] = 'Registration failed. Try again.';
+    } catch (PDOException $e) {
+        // Handle potential error in SQL query
+        die("Error inserting guest session: " . $e->getMessage());
     }
 }
 ?>
@@ -57,90 +38,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['signUp'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register & Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Login or Continue as Guest</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
+    <div class="container">
+        <!-- Admin Login Box -->
+        <div class="login-box">
+            <h1>Admin Login</h1>
+            <form action="login_action.php" method="post">
+                <div class="input-group">
+                    <label for="username">Admin Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
 
-    <!-- Sign In Form -->
-    <div class="container" id="signIn">
-        <h1 class="form-title">Sign In</h1>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
 
-        <?php if (isset($_SESSION['error'])): ?>
-            <p class="error-message"> <?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?> </p>
-        <?php endif; ?>
-
-        <?php if (isset($_SESSION['success'])): ?>
-            <p class="success-message"> <?php echo htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?> </p>
-        <?php endif; ?>
-
-        <form method="post" action="">
-            <div class="input-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" name="email" placeholder="Email" required>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" required>
-            </div>
-            <input type="submit" class="btn" value="Sign In" name="signIn">
-        </form>
-        <p class="or">----------or--------</p>
-        <div class="links">
-            <button id="signUpButton">Sign Up</button>
+                <button type="submit" name="login" class="btn">Login</button>
+            </form>
         </div>
-    </div>
 
-    <!-- Staff Sign In Form (Separate for Staff) -->
-    <div class="container" id="staffSignIn" style="display: none;">
-        <h1 class="form-title">Staff Sign In</h1>
+        <!-- Or Section for Continue as Guest -->
+        <div class="or">Or</div>
         
-        <?php if (isset($_SESSION['error'])): ?>
-            <p class="error-message"> <?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?> </p>
-        <?php endif; ?>
-
-        <form method="post" action="">
-            <div class="input-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" name="email" placeholder="Staff Email" required>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" required>
-            </div>
-            <input type="submit" class="btn" value="Staff Sign In" name="signIn">
-        </form>
-        <p class="or">----------or--------</p>
-        <div class="links">
-            <button id="signInButton">Back to User Sign In</button>
-        </div>
+        <!-- Continue as Guest Link Styled as Button -->
+        <a href="index.php?guest=true" class="guest-link">Continue as Guest</a>
     </div>
-
-    <!-- Sign Up Form -->
-    <div class="container" id="signUp" style="display: none;">
-        <h1 class="form-title">Sign Up</h1>
-        <form method="post" action="">
-            <div class="input-group">
-                <i class="fas fa-user"></i>
-                <input type="text" name="username" placeholder="Username" required>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" name="email" placeholder="Email" required>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" required>
-            </div>
-            <input type="submit" class="btn" value="Sign Up" name="signUp">
-        </form>
-        <p class="or">----------or--------</p>
-        <div class="links">
-            <button id="signInButton">Back to Sign In</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
 </body>
 </html>

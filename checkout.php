@@ -19,26 +19,35 @@ $productImage = urldecode($_GET['image']);
 
 // Process order
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Check CSRF token
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         die("Invalid request");
     }
 
-    $name = $_POST['name'];
-    $address = $_POST['address'];
-    $payment = $_POST['payment'];
+    // Sanitize form inputs
+    $name = htmlspecialchars($_POST['name']);
+    $address = htmlspecialchars($_POST['address']);
+    $payment = htmlspecialchars($_POST['payment']);
 
-    // Ipasok ang order sa database
-    $stmt = $conn->prepare("INSERT INTO orders (name, address, payment_method, product_name, price) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssd", $name, $address, $payment, $productName, $productPrice);
+    // Insert the order into the database using PDO
+    try {
+        $stmt = $pdo->prepare("INSERT INTO orders (name, address, payment_method, product_name, price) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bindParam(1, $name, PDO::PARAM_STR);
+        $stmt->bindParam(2, $address, PDO::PARAM_STR);
+        $stmt->bindParam(3, $payment, PDO::PARAM_STR);
+        $stmt->bindParam(4, $productName, PDO::PARAM_STR);
+        $stmt->bindParam(5, $productPrice, PDO::PARAM_STR);
 
-    if ($stmt->execute()) {
-        echo "<script>alert('Order placed successfully!'); window.location.href='homepage.php';</script>";
-    } else {
-        echo "<script>alert('Error placing order.');</script>";
+        if ($stmt->execute()) {
+            echo "<script>alert('Order placed successfully!'); window.location.href='homepage.php';</script>";
+        } else {
+            echo "<script>alert('Error placing order.');</script>";
+        }
+
+    } catch (PDOException $e) {
+        echo "<script>alert('Error: " . $e->getMessage() . "');</script>";
     }
 
-    $stmt->close();
-    $conn->close();
     exit();
 }
 ?>

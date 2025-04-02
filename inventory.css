@@ -1,56 +1,116 @@
-.inventory-section {
-    margin-top: 30px;
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
     padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.inventory-section h2 {
-    text-align: center;
-    color: #ff4500;
-    margin-bottom: 20px;
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: flex-start; /* Align the back button to the left */
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-.inventory-table {
+header h1 {
+    font-size: 36px;
+    color: #333;
+    margin-left: -230px; /* Add some margin to the right of the back button */
+}
+
+.manage-title {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
 }
 
-.inventory-table th, .inventory-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
-
-.inventory-table th {
-    background: #ff4500;
+/* Back Button Styling */
+.back-button {
+    background-color: #007bff;
     color: white;
-}
-
-.edit-btn, .delete-btn {
-    padding: 5px 10px;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.edit-btn {
-    background: #28a745;
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Button Styling */
+button {
+    background-color: #4CAF50;
     color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px;
 }
 
-.edit-btn:hover {
-    background: #218838;
+button:hover {
+    background-color: #45a049;
 }
 
-.delete-btn {
-    background: #dc3545;
+/* Table Styling */
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
     color: white;
+    font-size: 18px;
 }
 
-.delete-btn:hover {
-    background: #c82333;
+td {
+    font-size: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Links in the table */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
