@@ -65,7 +65,7 @@ if (isset($_GET['guest'])) {
         <div class="or">Or</div>
         
         <!-- Continue as Guest Link Styled as Button -->
-        <a href="index.php?guest=true" class="guest-link">Continue as Guest</a>
+        <a href="index.php?guest=true" class="guest-link">Continue if not Admin</a>
     </div>
 </body>
 </html>

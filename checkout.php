@@ -87,9 +87,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="payment">Payment Method:</label>
                 <select id="payment" name="payment" required>
-                    <option value="credit_card">Credit Card</option>
+                    <option value="credit_card">Gcash</option>
                     <option value="paypal">PayPal</option>
-                    <option value="cod">Cash on Delivery</option>
+                    <option value="paypal">Cash</option>
+
+
                 </select>
             </div>
 
