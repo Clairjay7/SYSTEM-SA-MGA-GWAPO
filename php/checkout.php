@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php'; // Connect sa database
+include '../php/connect.php'; // Connect sa database
 
 // CSRF Token Generation
 if (empty($_SESSION['csrf_token'])) {
@@ -9,7 +9,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 // Check if product details are set
 if (!isset($_GET['name'], $_GET['price'], $_GET['image'])) {
-    header("Location: shop.php");
+    header("Location: ../php/shop.php");
     exit();
 }
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $orderId = $pdo->lastInsertId();
 
             // Redirect to the receipt page with the order ID
-            header("Location: receipt.php?order_id=" . $orderId);
+            header("Location: ../php/receipt.php?order_id=" . $orderId);
             exit();
         } else {
             echo "<script>alert('Error placing order.');</script>";
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="../css/checkout.css">
 </head>
 <body>
     <div class="checkout-container">
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Submit Button -->
             <button type="submit">Place Order</button>
         </form>
-        <button onclick="window.location.href='homepage.php'">Cancel</button>
+        <button onclick="window.location.href='../php/homepage.php'">Cancel</button>
     </div>
 </body>
 </html>

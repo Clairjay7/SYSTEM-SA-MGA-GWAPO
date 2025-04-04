@@ -3,7 +3,7 @@ session_start();
 
 // Check if user is logged in or a guest
 if (!isset($_SESSION['user_id']) && !isset($_SESSION['guest'])) {
-    header("Location: index.php");
+    header("Location: ../php/index.php");
     exit();
 }
 
@@ -20,8 +20,8 @@ if (isset($_SESSION['guest'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hot Wheels Store</title>
-    <link rel="stylesheet" href="dashboard.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="../js/script.js" defer></script>
 </head>
 
 <body>

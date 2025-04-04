@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once 'connect.php';
+require_once '../php/connect.php';
 
 // Check if user is logged in as an admin
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: login.php");
+    header("Location: ../php/login.php");
     exit();
 }
 
@@ -18,12 +18,12 @@ if (isset($_GET['id'])) {
 
     // If no product is found, redirect back
     if (!$product) {
-        header("Location: manage_inventory.php");
+        header("Location: ../php/manage_inventory.php");
         exit();
     }
 } else {
     // If no ID is provided, redirect back
-    header("Location: manage_inventory.php");
+    header("Location: ../php/manage_inventory.php");
     exit();
 }
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_product'])) {
     ]);
 
     // Redirect back to manage inventory page after update
-    header("Location: manage_inventory.php");
+    header("Location: ../php/manage_inventory.php");
     exit();
 }
 ?>
@@ -58,12 +58,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_product'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
-    <link rel="stylesheet" href="editProduct.css">
+    <link rel="stylesheet" href="../css/editProduct.css">
 
 </head>
 <body>
     <h2>Edit Product</h2>
-    <form method="POST" action="editProduct.php?id=<?php echo $id; ?>">
+    <form method="POST" action="../php/editProduct.php?id=<?php echo $id; ?>">
         <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($product['product_name']); ?>" required>
 

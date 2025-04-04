@@ -1,6 +1,6 @@
 <?php
 // Include the database connection
-require_once 'connect.php';;
+require_once '../php/connect.php';;
 
 // Get User by Email (for login)
 function getUserByEmail($conn, $email) {

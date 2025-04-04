@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: login.php");
+    header("Location: ../php/index.php");
     exit();
 }
 ?>
@@ -12,21 +12,21 @@ if (!isset($_SESSION['admin_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="admin_dashboard.css">
+    <link rel="stylesheet" href="../css/admin_dashboard.css">
 </head>
 <body>
     <header>
         <h1>Admin Dashboard</h1>
-        <a href="logout.php" class="logout">Logout</a>
+        <a href="../php/logout.php" class="logout">Logout</a>
     </header>
     
     <div class="dashboard-container">
         <div class="card">
             <h2>Welcome, Admin</h2>
             <p>Manage your inventory and users efficiently.</p>
-            <a href="manage_inventory.php"><button>Manage Inventory</button></a>
-            <a href="manageUsers.php"><button>Manage Users</button></a>
-            <a href="homepage.php"><button>Go to Homepage</button></a>
+            <a href="../php/manage_inventory.php"><button>Manage Inventory</button></a>
+            <a href="../php/manageUsers.php"><button>Manage Users</button></a>
+            <a href="../php/homepage.php"><button>Go to Homepage</button></a>
         </div>
     </div>
 </body>

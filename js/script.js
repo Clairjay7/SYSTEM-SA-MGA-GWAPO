@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             console.log(`🛍️ Selected: ${productName} - $${productPrice}`);
-            window.location.href = `checkout.php?name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&image=${encodeURIComponent(productImage)}`;
+            window.location.href = `../php/checkout.php?name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&image=${encodeURIComponent(productImage)}`;
         });
     });
 });

@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once 'connect.php'; // Ensure the connection is established
+require_once '../php/connect.php'; // Ensure the connection is established
 
 // DELETE user (only applies to registered users)
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     $pdo->query("DELETE FROM users WHERE id = $id");
     $_SESSION['success'] = "User deleted successfully!";
-    header("Location: manageUsers.php");
+    header("Location: ../php/manageUsers.php");
     exit();
 }
 
@@ -24,11 +24,11 @@ $stmtGuests = $pdo->query("SELECT id, session_id AS username, created_at FROM gu
 <head>
     <title>Manage Users</title>
     <!-- Link to the external CSS file -->
-    <link rel="stylesheet" href="manageUsers.css">
+    <link rel="stylesheet" href="../css/manageUsers.css">
 </head>
 <body>
 
-    <a class="back-link" href="admin_dashboard.php">← Back to Dashboard</a>
+    <a class="back-link" href="../php/admin_dashboard.php">← Back to Dashboard</a>
 
     <div class="container">
         <h1 class="center-title">Manage Users</h1>
@@ -54,8 +54,8 @@ $stmtGuests = $pdo->query("SELECT id, session_id AS username, created_at FROM gu
                     <td><?= $user['created_at']; ?></td>
                     <td>Admin</td>
                     <td>
-                        <a href="updateUser.php?id=<?= $user['id']; ?>">Edit</a>
-                        <a href="manageUsers.php?delete=<?= $user['id']; ?>" onclick="return confirm('Are you sure?');">Delete</a>
+                        <a href="../php/updateUser.php?id=<?= $user['id']; ?>">Edit</a>
+                        <a href="../php/manageUsers.php?delete=<?= $user['id']; ?>" onclick="return confirm('Are you sure?');">Delete</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

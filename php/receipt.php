@@ -1,10 +1,10 @@
 <?php
 session_start();
-include 'connect.php'; // Connect sa database
+include '../php/connect.php'; // Connect sa database
 
 // Check if order ID is provided
 if (!isset($_GET['order_id'])) {
-    header("Location: homepage.php");
+    header("Location: ../php/homepage.php");
     exit();
 }
 
@@ -31,7 +31,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Receipt</title>
-    <link rel="stylesheet" href="receipt.css">
+    <link rel="stylesheet" href="../css/receipt.css">
 </head>
 <body>
     <div class="receipt-container">
@@ -58,7 +58,7 @@ try {
                 }
             ?>
         </p>
-        <button onclick="window.location.href='homepage.php'">Go to Homepage</button>
+        <button onclick="window.location.href='../php/homepage.php'">Go to Homepage</button>
     </div>
 </body>
 </html>
