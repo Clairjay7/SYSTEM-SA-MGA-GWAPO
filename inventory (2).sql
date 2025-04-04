@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2025 at 06:26 PM
+-- Generation Time: Apr 04, 2025 at 01:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `product_name`, `description`, `price`, `image_url`, `quantity`, `created_at`) VALUES
-(2, 'Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP', 'Classic Ferrari F355 Berlinetta in red with 5-spoke wheels.', 1000.75, 'https://i.ebayimg.com/images/g/iYcAAeSwCPtno9af/s-l960.webp', 5, '2025-04-02 15:38:07'),
+(2, 'Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP', 'Classic Ferrari F355 Berlinetta in red with 5-spoke wheels.', 1000.75, 'https://i.ebayimg.com/images/g/iYcAAeSwCPtno9af/s-l960.webp', 4, '2025-04-02 15:38:07'),
 (3, 'Hot Wheels 2000 Lamborghini Diablo Blue 5DOT Virtual Cars', 'Exclusive blue Lamborghini Diablo from Virtual Cars series.', 555.75, 'https://i.ebayimg.com/images/g/6DoAAeSwQ71npOES/s-l960.webp', 8, '2025-04-02 15:38:07'),
 (4, '2023 Hot Wheels DC Batmobile 103/250 1:64 Diecast Car White Batman Series 3/5', 'White Batmobile from the 2023 Batman series.', 111.75, 'https://i.ebayimg.com/images/g/9w8AAeSwIIZnyFvK/s-l960.webp', 12, '2025-04-02 15:38:07'),
 (5, '2025 Hot Wheels Premium Car Culture 2 Pack Lamborghini Countach & Lancia Stratos', 'Special 2-pack featuring Lamborghini Countach & Lancia Stratos.', 15.75, 'https://i.ebayimg.com/images/g/AcIAAeSwg8lnyG9o/s-l960.webp', 20, '2025-04-02 15:38:07'),
