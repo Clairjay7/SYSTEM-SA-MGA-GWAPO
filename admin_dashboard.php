@@ -26,6 +26,7 @@ if (!isset($_SESSION['admin_id'])) {
             <p>Manage your inventory and users efficiently.</p>
             <a href="manage_inventory.php"><button>Manage Inventory</button></a>
             <a href="manageUsers.php"><button>Manage Users</button></a>
+            <a href="homepage.php"><button>Go to Homepage</button></a>
         </div>
     </div>
 </body>

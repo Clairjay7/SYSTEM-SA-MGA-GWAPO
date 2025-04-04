@@ -36,16 +36,18 @@ if (isset($_SESSION['guest'])) {
             <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
                 <li><a href="logout.php">Logout</a></li>
             <?php endif; ?>
-            <li><a href="getHelp.php" class="get-help-btn">Get Help</a></li>
-            <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'admin'): ?>
-                <li><a href="manageUsers.php">Manage Users</a></li>
-            <?php endif; ?>
         </ul>
     </nav>
 
     <div class="dashboard-container">
         <section class="dashboard-buttons">
-        </section>
+    <!-- Back to Admin Dashboard Button -->
+    <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'admin'): ?>
+        <a href="admin_dashboard.php" class="back-to-dashboard-btn">Back to Admin Dashboard</a>
+    <?php endif; ?>
+</section>
+
+
 
         <!-- Main Content -->
         <div class="main-content">
@@ -174,7 +176,7 @@ if (isset($_SESSION['guest'])) {
                         </div>
                     </div>
                     <div class="product-card">
-                        <img src="https://i.ebayimg.com/images/g/gd0AAOSw8fZnxWyJ/s-l960.webp" alt="Hot Wheels Car">
+                        <img src="https://i.ebayimg.com/images/g/lT0AAOSw5eNnw~qd/s-l1600.webp" alt="Hot Wheels Car">
                         <h3>HOT WHEELS SUBARU WRX STI 2025 JDM 100% CUSTOM GARAGE</h3>
                         <p class="product-price">$15.75</p>
                         <div class="button-container">

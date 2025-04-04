@@ -21,7 +21,6 @@
     display: block; /* Siguradong hindi maapektuhan ng flex properties ng navbar */
 }
 
-
 /* STYLING FOR NAVIGATION LINKS */
 .navbar ul {
     list-style: none;
@@ -56,6 +55,7 @@
     background: #fee040;
     height: 100vh;
     color: white;
+    position: relative;
 }
 
 .dashboard-buttons button {
@@ -64,6 +64,28 @@
     padding: 10px;
     color: white;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Admin Dashboard Button */
+.back-to-dashboard-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0057b8;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-top: 20px;
+    border: 2px solid #0057b8;
+}
+
+.back-to-dashboard-btn:hover {
+    background: #003e7a;
+    border-color: #003e7a;
     cursor: pointer;
 }
 

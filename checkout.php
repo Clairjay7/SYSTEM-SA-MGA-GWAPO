@@ -26,20 +26,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Sanitize form inputs
     $name = htmlspecialchars($_POST['name']);
-    $address = htmlspecialchars($_POST['address']);
     $payment = htmlspecialchars($_POST['payment']);
 
     // Insert the order into the database using PDO
     try {
-        $stmt = $pdo->prepare("INSERT INTO orders (name, address, payment_method, product_name, price) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO orders (name, payment_method, product_name, price) VALUES (?, ?, ?, ?)");
         $stmt->bindParam(1, $name, PDO::PARAM_STR);
-        $stmt->bindParam(2, $address, PDO::PARAM_STR);
-        $stmt->bindParam(3, $payment, PDO::PARAM_STR);
-        $stmt->bindParam(4, $productName, PDO::PARAM_STR);
-        $stmt->bindParam(5, $productPrice, PDO::PARAM_STR);
+        $stmt->bindParam(2, $payment, PDO::PARAM_STR);
+        $stmt->bindParam(3, $productName, PDO::PARAM_STR);
+        $stmt->bindParam(4, $productPrice, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Order placed successfully!'); window.location.href='homepage.php';</script>";
+            // Get the order ID of the last inserted record
+            $orderId = $pdo->lastInsertId();
+
+            // Redirect to the receipt page with the order ID
+            header("Location: receipt.php?order_id=" . $orderId);
+            exit();
         } else {
             echo "<script>alert('Error placing order.');</script>";
         }
@@ -77,21 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="name" name="name" required>
             </div>
 
-            <!-- Shipping Address Input (Fixed) -->
-            <div class="form-group">
-                <label for="address">Shipping Address:</label>
-                <input type="text" id="address" name="address" required>
-            </div>
-
             <!-- Payment Method Dropdown -->
             <div class="form-group">
                 <label for="payment">Payment Method:</label>
                 <select id="payment" name="payment" required>
-                    <option value="credit_card">Gcash</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="paypal">Cash</option>
-
-
+                    <option value="Gcash">Gcash</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Cash">Cash</option>
                 </select>
             </div>
 
