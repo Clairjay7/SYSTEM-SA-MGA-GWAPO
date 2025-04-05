@@ -53,10 +53,10 @@ $products = [
     <nav class="navbar">
         <h1>Hapart 4 Speed</h1>
         <ul>
-            <li><a href="../php/index.php">Home</a></li>
-            <li><a href="shop.php">Shop</a></li>
+            <li><a href="../php/homepage.php">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
+            <li><a href="shop.php">Shop</a></li>
             <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
                 <li><a href="logout.php">Logout</a></li>
             <?php endif; ?>

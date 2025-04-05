@@ -2,53 +2,58 @@
 session_start();
 require_once '../php/connect.php';
 
-// Check if user is logged in as an admin
+// Redirect to login if not logged in as admin
 if (!isset($_SESSION['admin_id'])) {
     header("Location: ../php/login.php");
     exit();
 }
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-
-    // Fetch the product data from the database
-    $stmt = $pdo->prepare("SELECT * FROM inventory WHERE id = :id");
-    $stmt->execute([':id' => $id]);
-    $product = $stmt->fetch();
-
-    // If no product is found, redirect back
-    if (!$product) {
-        header("Location: ../php/manage_inventory.php");
-        exit();
-    }
-} else {
-    // If no ID is provided, redirect back
+// Check if product ID is provided
+if (!isset($_GET['id'])) {
     header("Location: ../php/manage_inventory.php");
     exit();
 }
 
-// Update the product if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_product'])) {
+$id = $_GET['id'];
+
+// Fetch product details
+$stmt = $pdo->prepare("SELECT * FROM inventory WHERE id = :id");
+$stmt->execute([':id' => $id]);
+$product = $stmt->fetch();
+
+if (!$product) {
+    header("Location: ../php/manage_inventory.php");
+    exit();
+}
+
+// Handle product update
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_product'])) {
     $name = $_POST['name'];
-    $description = $_POST['description'];
     $price = $_POST['price'];
     $image_url = $_POST['image_url'];
     $quantity = $_POST['quantity'];
 
-    $update_sql = "UPDATE inventory SET product_name = :name, description = :description, price = :price, image_url = :image_url, quantity = :quantity WHERE id = :id";
-    $stmt = $pdo->prepare($update_sql);
-    $stmt->execute([
-        ':name' => $name,
-        ':description' => $description,
-        ':price' => $price,
-        ':image_url' => $image_url,
-        ':quantity' => $quantity,
-        ':id' => $id
-    ]);
+    try {
+        $update = $pdo->prepare("UPDATE inventory 
+            SET product_name = :name, 
+                price = :price, 
+                image_url = :image_url,
+                quantity = :quantity 
+            WHERE id = :id");
 
-    // Redirect back to manage inventory page after update
-    header("Location: ../php/manage_inventory.php");
-    exit();
+        $update->execute([
+            ':name' => $name,
+            ':price' => $price,
+            ':image_url' => $image_url,
+            ':quantity' => $quantity,
+            ':id' => $id
+        ]);
+
+        header("Location: ../php/manage_inventory.php");
+        exit();
+    } catch (PDOException $e) {
+        die("Error updating product: " . $e->getMessage());
+    }
 }
 ?>
 
@@ -56,28 +61,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_product'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
     <link rel="stylesheet" href="../css/editProduct.css">
-
 </head>
 <body>
     <h2>Edit Product</h2>
-    <form method="POST" action="../php/editProduct.php?id=<?php echo $id; ?>">
-        <label for="name">Product Name:</label>
-        <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($product['product_name']); ?>" required>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required><?php echo htmlspecialchars($product['description']); ?></textarea>
+    <form method="POST" action="../php/editProduct.php?id=<?= $id; ?>">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" value="<?= htmlspecialchars($product['product_name']); ?>" required>
 
         <label for="price">Price:</label>
-        <input type="text" id="price" name="price" value="<?php echo htmlspecialchars($product['price']); ?>" required>
+        <input type="text" id="price" name="price" value="<?= htmlspecialchars($product['price']); ?>" required>
 
         <label for="image_url">Image URL:</label>
-        <input type="text" id="image_url" name="image_url" value="<?php echo htmlspecialchars($product['image_url']); ?>" required>
+        <input type="text" id="image_url" name="image_url" value="<?= htmlspecialchars($product['image_url']); ?>" required>
 
         <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" value="<?php echo htmlspecialchars($product['quantity']); ?>" required>
+        <input type="number" id="quantity" name="quantity" value="<?= htmlspecialchars($product['quantity']); ?>" required>
 
         <button type="submit" name="update_product">Update Product</button>
     </form>

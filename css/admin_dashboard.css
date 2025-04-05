@@ -38,9 +38,9 @@ header h1 {
 /* Logout Button - Pinaka-taas na Right Corner */
 .logout {
     position: absolute;
+    left: 150;
     right: 20px;  /* Mas dikit sa gilid */
-    top: -250px;  /* Pinaka-taas */
-
+    top: -150px;  /* Pinaka-taas */
     background-color: #f44336;
     color: white;
     padding: 10px 15px;

@@ -54,7 +54,7 @@ $ads = get_ads_from_api(); // Fetch dynamic ads
     <nav class="navbar">
         <h1>Hapart 4 Speed</h1>
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="homepage.php">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="../php/shop.php">Shop</a></li>

@@ -47,7 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id'], $_POST['st
 <body>
     <header>
         <h1>Manage Orders</h1>
-        <a href="../php/logout.php" class="logout">Logout</a>
+        <form action="../php/logout.php" method="POST" class="logout-form">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
+
     </header>
 
     <div class="orders-container">
