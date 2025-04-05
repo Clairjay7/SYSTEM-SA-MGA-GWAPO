@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+<<<<<<< HEAD
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
@@ -23,10 +24,80 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 10px;
+=======
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 70%;
+    max-width: 900px; /* Slightly wider container */
+    background: white;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* Centered Checkout Title */
+h2 {
+    font-size: 2.2em;
+    color: #333;
+    margin: 0;
+    text-align: center;
+}
+
+/* Product summary */
+.product-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.product-summary img {
+    width: 750px;  /* Increased image width */
+    height: 350px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.product-summary h3 {
+    font-size: 1.8em;
+    color: #222;
+    margin: 10px 0;
+}
+
+.product-summary p {
+    font-size: 1.5em;
+    color: #555;
+}
+
+/* Form Styling */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Input field container */
+.form-group {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 15px;
+>>>>>>> c739b7baacb2d2ed47c87c308876a7249c13214a
 }
 
 .checkout-form label {
     font-weight: bold;
+<<<<<<< HEAD
 }
 
 .checkout-form input[type="text"] {
@@ -102,4 +173,70 @@ h2 {
 
 .btn-back-home:hover {
     background-color: #0056b3;
+=======
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Improved Input Fields */
+.checkout-form input,
+.checkout-form select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    font-size: 1.1em;
+    background: #fff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Fixed Shipping Address */
+.shipping-address input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 1em;
+    background: #fff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Bigger button */
+.checkout-form button {
+    width: 100%;
+    padding: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.checkout-form button:hover {
+    background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .product-summary img {
+        width: 280px;  /* Adjusted for mobile */
+    }
+
+    .checkout-form button {
+        font-size: 1.2em;
+    }
+>>>>>>> c739b7baacb2d2ed47c87c308876a7249c13214a
 }
