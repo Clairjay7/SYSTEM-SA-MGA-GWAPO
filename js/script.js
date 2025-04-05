@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             console.log(`🛍️ Selected: ${productName} - $${productPrice}`);
-<<<<<<< HEAD
 
             // Send order details to the API
             const orderData = {
@@ -162,9 +161,4 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
-=======
-            window.location.href = `../php/checkout.php?name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&image=${encodeURIComponent(productImage)}`;
-        });
-    });
->>>>>>> c739b7baacb2d2ed47c87c308876a7249c13214a
 });

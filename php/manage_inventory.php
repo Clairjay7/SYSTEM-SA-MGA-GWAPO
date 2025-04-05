@@ -75,13 +75,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['product_name']); ?>" width="100"></td>
                             <td><?= htmlspecialchars($product['quantity']); ?></td>  <!-- Display Quantity -->
                             <td>
-<<<<<<< HEAD
                                 <a href="../php/editProduct.php?id=<?= $product['id']; ?>">Edit</a> | 
                                 <a href="/php/manage_inventory.php?delete_id=<?= $product['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-=======
-                                <a href="../php/editProduct.php?id=<?= $item['id']; ?>">Edit</a> | 
-                                <a href="/php/manage_inventory.php?delete_id=<?= $item['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
->>>>>>> c739b7baacb2d2ed47c87c308876a7249c13214a
                             </td>
                         </tr>
                     <?php endforeach; ?>
