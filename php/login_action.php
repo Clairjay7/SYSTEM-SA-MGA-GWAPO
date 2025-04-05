@@ -14,8 +14,8 @@ if (isset($_POST['login'])) {
     if ($username === $admin_username && password_verify($password, $admin_password_hash)) {
         // Set session for admin
         $_SESSION['admin_id'] = $username;
-        $_SESSION['user_id'] = $username; // ✅ Set this to allow homepage.php access
-        $_SESSION['role'] = 'admin';      // Optional: useful for homepage role check
+        $_SESSION['user_id'] = $username;
+        $_SESSION['role'] = 'admin';
 
         // Redirect to admin dashboard
         header("Location: admin_dashboard.php");
@@ -23,7 +23,7 @@ if (isset($_POST['login'])) {
     } else {
         // Invalid login
         $_SESSION['error_message'] = "Invalid username or password.";
-        header("Location: index.php");
+        header("Location: ../index.php"); // ✅ Redirect correctly to index.php
         exit();
     }
 }

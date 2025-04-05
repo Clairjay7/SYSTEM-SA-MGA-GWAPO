@@ -1,38 +1,35 @@
 <?php
 session_start();
-require_once 'connect.php'; // Ensure your connect.php file is included for database connection
+require_once '../php/connect.php'; // Ensure your connect.php file is included for database connection
 
 // Check if the user is logged in as Admin
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: login.php"); // Redirect to login page if not an Admin
+    header("Location: ../php/login.php"); // Redirect to login page if not an Admin
     exit();
 }
 
 // DELETE FUNCTION (Direct in manage_inventory.php)
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
-    
+
+    // Delete product by ID
     try {
         $stmt = $pdo->prepare("DELETE FROM inventory WHERE id = :id");
         $stmt->bindParam(':id', $delete_id, PDO::PARAM_INT);
         $stmt->execute();
-        
+
         // Redirect after deletion
-        header("Location: manage_inventory.php");
+        header("Location: ../php/manage_inventory.php");
         exit();
     } catch (PDOException $e) {
         die("Error deleting product: " . $e->getMessage());
     }
 }
 
-// Fetch all inventory items from the database
-try {
-    $stmt = $pdo->prepare("SELECT * FROM inventory");
-    $stmt->execute();
-    $inventory = $stmt->fetchAll();  // Fetch all inventory records
-} catch (PDOException $e) {
-    die("Error fetching inventory: " . $e->getMessage());
-}
+// Fetch products including quantity
+$query = "SELECT id, product_name, price, image_url, quantity FROM inventory";
+$stmt = $pdo->query($query);
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -41,12 +38,12 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Inventory</title>
-    <link rel="stylesheet" href="inventory.css">
+    <link rel="stylesheet" href="../css/inventory.css">
 </head>
 <body>
     <header>
         <!-- Back button aligned to the left -->
-        <a href="admin_dashboard.php">
+        <a href="../php/admin_dashboard.php">
             <button class="back-button">Back to Admin Dashboard</button>
         </a>
         <div class="manage-title">
@@ -63,34 +60,36 @@ try {
                     <th>ID</th>
                     <th>Product Name</th>
                     <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Image</th>
+                    <th>Quantity</th>  <!-- Added Quantity Column -->
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if (!empty($inventory)): ?>
-                    <?php foreach ($inventory as $item): ?>
+                <?php if (!empty($products)): ?>
+                    <?php foreach ($products as $product): ?>
                         <tr>
-                            <td><?= $item['id']; ?></td>
-                            <td><?= htmlspecialchars($item['product_name']); ?></td>
-                            <td><?= htmlspecialchars($item['price']); ?></td>
-                            <td><?= htmlspecialchars($item['quantity']); ?></td>
+                            <td><?= $product['id']; ?></td>
+                            <td><?= htmlspecialchars($product['product_name']); ?></td>
+                            <td><?= htmlspecialchars($product['price']); ?></td>
+                            <td><img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['product_name']); ?>" width="100"></td>
+                            <td><?= htmlspecialchars($product['quantity']); ?></td>  <!-- Display Quantity -->
                             <td>
-                                <a href="editProduct.php?id=<?= $item['id']; ?>">Edit</a> | 
-                                <a href="manage_inventory.php?delete_id=<?= $item['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                <a href="../php/editProduct.php?id=<?= $product['id']; ?>">Edit</a> | 
+                                <a href="/php/manage_inventory.php?delete_id=<?= $product['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" style="text-align: center;">No products found</td>
+                        <td colspan="6" style="text-align: center;">No products found</td>  <!-- Adjust colspan -->
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
 
         <br><br>
-        <a href="add_inventory.php">
+        <a href="../php/add_inventory.php">
             <button>Add New Product</button>
         </a>
     </div>

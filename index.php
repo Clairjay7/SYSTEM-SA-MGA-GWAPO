@@ -1,33 +1,26 @@
 <?php
 session_start(); // Start the session at the very beginning
 
-include('connect.php'); // Make sure your updated database connection file is correctly included
+include('php/connect.php'); // Make sure your updated database connection file is correctly included
 
 // Check if the user is already logged in (either as admin or as a guest)
 if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])) {
     // Redirect to homepage if logged in as an admin or a guest
-    header("Location: homepage.php");
+    header("Location: php/homepage.php");
     exit();
 }
 
 // If "Continue as Guest" is clicked, start the guest session
 if (isset($_GET['guest'])) {
-    // Start the guest session
     $_SESSION['guest'] = true;
-
-    // Generate a unique session ID for the guest
     $guest_session_id = session_id();
 
     try {
-        // Insert the guest session into the database using PDO
         $stmt = $pdo->prepare("INSERT INTO guest_sessions (session_id) VALUES (:session_id)");
-        $stmt->execute([':session_id' => $guest_session_id]); // Use execute() to bind the session ID
-
-        // Redirect to homepage after successful guest login
-        header("Location: homepage.php");
+        $stmt->execute([':session_id' => $guest_session_id]);
+        header("Location: php/homepage.php");
         exit();
     } catch (PDOException $e) {
-        // Handle potential error in SQL query
         die("Error inserting guest session: " . $e->getMessage());
     }
 }
@@ -39,14 +32,25 @@ if (isset($_GET['guest'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login or Continue as Guest</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <div class="container">
         <!-- Admin Login Box -->
         <div class="login-box">
             <h1>Admin Login</h1>
-            <form action="login_action.php" method="post">
+
+            <!-- Show error message if login fails -->
+            <?php if (isset($_SESSION['error_message'])): ?>
+                <div class="error-message" style="color: red; margin-bottom: 10px;">
+                    <?php 
+                        echo $_SESSION['error_message']; 
+                        unset($_SESSION['error_message']); // Clear the error after showing it
+                    ?>
+                </div>
+            <?php endif; ?>
+
+            <form action="php/login_action.php" method="post">
                 <div class="input-group">
                     <label for="username">Admin Username</label>
                     <input type="text" id="username" name="username" required>

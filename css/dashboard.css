@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background: url('123.png') no-repeat center center;
+    background: #0057b8;
     background-size: cover;
     color: white;
 }
@@ -47,16 +47,14 @@
 }
 
 .dashboard-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 200px;
+    /* Remove the yellow background */
+    background: none; /* Or use any color you prefer */
     padding: 20px;
-    background: #fee040;
     height: 100vh;
     color: white;
     position: relative;
 }
+
 
 .dashboard-buttons button {
     background: #0057b8;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2025 at 01:32 PM
+-- Generation Time: Apr 05, 2025 at 12:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,10 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `payment_method` enum('Gcash','PayPal','Cash') NOT NULL,
+  `customer_name` varchar(255) NOT NULL,
   `product_name` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
+  `payment_method` enum('Cash','Paypal','Gcash') NOT NULL,
+  `status` enum('Pending','Completed') DEFAULT 'Pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -40,11 +42,12 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `name`, `payment_method`, `product_name`, `price`, `created_at`) VALUES
-(1, 'John Doe', 'PayPal', 'Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP', 1000.75, '2025-04-04 11:25:22'),
-(2, 'Jul Bolando', 'Gcash', 'Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP', 1000.75, '2025-04-04 11:27:25'),
-(3, 'Jul Bolando', 'PayPal', 'Hot Wheels 1997 FE Lamborghini Countach Yellow 25th Ann.', 100.75, '2025-04-04 11:27:31'),
-(4, 'dasdsadas', 'Cash', 'Hot Wheels 2000 Lamborghini Diablo Blue 5DOT Virtual Cars', 555.75, '2025-04-04 11:27:43');
+INSERT INTO `orders` (`id`, `customer_name`, `product_name`, `quantity`, `price`, `payment_method`, `status`, `created_at`) VALUES
+(1, 'User #Admin', 'Hot Wheels 1997 FE Lamborghini Countach Yellow 25th Ann.', 1, 100.75, 'Paypal', 'Pending', '2025-04-05 09:20:40'),
+(2, 'User #Admin', 'Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP', 1, 1.00, '', 'Pending', '2025-04-05 09:21:27'),
+(3, 'User #Admin', 'Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP', 1, 1.00, 'Cash', 'Pending', '2025-04-05 09:23:00'),
+(4, 'User #Admin', 'Hot Wheels 2000 Lamborghini Diablo Blue 5DOT Virtual Cars', 1, 555.75, 'Cash', 'Completed', '2025-04-05 09:24:00'),
+(5, 'User #Admin', 'Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP', 1, 1.00, 'Paypal', 'Pending', '2025-04-05 09:24:08');
 
 --
 -- Indexes for dumped tables
@@ -64,7 +67,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

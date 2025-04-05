@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Help - Support</title>
-    <link rel="stylesheet" href="getHelp.css">
+    <link rel="stylesheet" href="../css/getHelp.css">
 </head>
 <body>
     <div class="container">
         <!-- Back to Home Button -->
-        <button onclick="window.location.href='homepage.php'" class="back-btn">⬅ Back to Home</button>
+        <button onclick="window.location.href='../php/homepage.php'" class="back-btn">⬅ Back to Home</button>
         <h2>Get Help & Support</h2>
         
         <!-- FAQ Section -->

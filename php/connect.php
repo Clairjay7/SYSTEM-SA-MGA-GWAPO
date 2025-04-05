@@ -29,3 +29,4 @@ try {
     error_log("Database connection error: " . $e->getMessage());  // Log the error to a file for troubleshooting
     die("Connection failed: Please try again later.");
 }
+?>

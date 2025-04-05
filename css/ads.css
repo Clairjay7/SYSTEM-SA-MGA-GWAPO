@@ -1,0 +1,82 @@
+/* ads.css */
+
+/* Container for ads */
+.ad-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Each ad card */
+.ad-card {
+    width: 400px;  /* Increase the width */
+    height: 600px;  /* Increase the height */
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;  /* Set background color to a neutral color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Keep box shadow for nice effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    animation: slide 5s infinite linear; /* Add sliding animation */
+}
+
+/* Slide animation keyframes */
+@keyframes slide {
+    0% {
+        transform: translateX(100%); /* Slide in from the right */
+    }
+    100% {
+        transform: translateX(-100%); /* Slide out to the left */
+    }
+}
+
+/* Hover effect */
+.ad-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Ad Description */
+.ad-description {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Learn More Link */
+.ad-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.ad-link:hover {
+    background-color: #2980b9;
+}
+
+/* Ad Image */
+.ad-card img,
+.ad-card video {
+    width: 100%;
+    height: 300px;  /* Increase the height */
+    object-fit: cover;  /* Maintain aspect ratio for images and videos */
+}
+
+/* Ad Image and Video */
+.ad-card img {
+    max-height: 300px;  /* Increase max height */
+}
+
+.ad-card video {
+    max-height: 300px;  /* Ensure video stays the same size */
+    object-fit: cover;  /* Ensure video covers the area without distortion */
+}

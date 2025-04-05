@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php'; // Connect to hotwheels_store DB
+include '../php/connect.php'; // Connect to hotwheels_store DB
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product_id = $_POST['product_id'];
