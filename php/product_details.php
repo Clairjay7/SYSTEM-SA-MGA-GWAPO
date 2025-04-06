@@ -179,8 +179,8 @@ if (!$product) {
             <li><a href="shop.php">Shop</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
+            <li><a href="logout.php">Logout</a></li>
             <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
-                <li><a href="logout.php">Logout</a></li>
             <?php endif; ?>
         </ul>
     </nav>

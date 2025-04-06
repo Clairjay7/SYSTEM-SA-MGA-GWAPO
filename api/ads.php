@@ -21,6 +21,26 @@ $ads = [
         "link" => "https://example.com/product3",
         "animation_type" => "fade"
     ],
+    [
+        "id" => 4,
+        "image_url" => "https://media1.tenor.com/m/oy9UhKto6G0AAAAd/acceleracers-vert.gif",
+        "link" => "https://example.com/product3",
+        "animation_type" => "fade"
+    ],
+    [
+        "id" => 5,
+        "image_url" => "https://media1.tenor.com/m/oy9UhKto6G0AAAAd/acceleracers-vert.gif",
+        "link" => "https://example.com/product3",
+        "animation_type" => "fade"
+    ],
+    [
+        "id" => 6,
+        "image_url" => "https://media1.tenor.com/m/oy9UhKto6G0AAAAd/acceleracers-vert.gif",
+        "link" => "https://example.com/product3",
+        "animation_type" => "fade"
+    ],
+
+
 ];
 
 echo json_encode($ads);

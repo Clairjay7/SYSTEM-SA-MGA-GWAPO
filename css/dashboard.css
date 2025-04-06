@@ -298,3 +298,42 @@ button:hover {
     font-weight: bold;
     color: #000; /* Black text */
 }
+/* Center the product detail container */
+.product-detail-container {
+    max-width: 800px;
+    margin: 50px auto;  /* Center the container horizontally with a top margin */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center the text inside the container */
+}
+
+/* Product image styles */
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Price styling */
+.price {
+    font-size: 1.5rem;
+    color: #e74c3c;  /* Highlight price in a different color */
+    margin-top: 10px;
+}
+
+/* Heading styling */
+h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* Paragraph styling for product description */
+p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
