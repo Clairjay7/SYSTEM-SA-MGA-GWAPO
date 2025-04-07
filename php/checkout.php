@@ -76,9 +76,9 @@ if (isset($_POST['product_id'])) {
     <h1>Hapart 4 Speed</h1>
     <ul>
         <li><a href="../php/homepage.php">Home</a></li>
-        <li><a href="shop.php">Shop</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
+        <li><a href="shop.php">Shop</a></li>
         <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
             <li><a href="../php/logout.php">Logout</a></li>
         <?php endif; ?>
