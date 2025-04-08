@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const password = document.getElementById("signUpPassword").value.trim();
 
             if (!username || !password) {
-                alert("⚠️ Please fill in both username and password.");
+                alert("⚠️ Enter ka muna man.");
                 return;
             }
 

@@ -41,6 +41,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created_at`) VALUES
 (1, 'Admin', '$2y$10$q3dVQ//kTlf3Ofzy786XMebrd9ocS.3pyUl1/XLcx580UJrOH8Chm', 'admin', '2025-04-04 17:22:24');
+(3, 'AdminG', '123', 'admin', '2025-04-04 17:22:24');
 
 --
 -- Indexes for dumped tables
