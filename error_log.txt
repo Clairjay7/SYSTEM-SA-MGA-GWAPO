@@ -1,0 +1,45 @@
+[26-May-2025 14:08:24 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'mjqq72oklpa7bs48ge5vt3h8s5' for key 'session_id' in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php:41
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41
+[26-May-2025 14:09:09 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'mjqq72oklpa7bs48ge5vt3h8s5' for key 'session_id' in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php:41
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41
+[26-May-2025 14:09:36 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'mjqq72oklpa7bs48ge5vt3h8s5' for key 'session_id' in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php:41
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41
+[26-May-2025 14:09:39 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'mjqq72oklpa7bs48ge5vt3h8s5' for key 'session_id' in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php:41
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41
+[26-May-2025 14:09:41 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'mjqq72oklpa7bs48ge5vt3h8s5' for key 'session_id' in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php:41
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41
+[26-May-2025 14:09:45 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'mjqq72oklpa7bs48ge5vt3h8s5' for key 'session_id' in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php:41
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41
+[26-May-2025 14:10:13 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'mjqq72oklpa7bs48ge5vt3h8s5' for key 'session_id' in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php:41
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41
+[26-May-2025 14:10:14 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'mjqq72oklpa7bs48ge5vt3h8s5' for key 'session_id' in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php:41
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41
+[26-May-2025 15:25:23 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'mjqq72oklpa7bs48ge5vt3h8s5' for key 'session_id' in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php:41
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41

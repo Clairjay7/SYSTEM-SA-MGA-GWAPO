@@ -1,97 +1,118 @@
 <!-- filepath: f:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\php\manage_inventory.php -->
 <?php
 session_start();
-require_once '../php/connect.php'; // Ensure your connect.php file is included for database connection
+require_once '../config/database.php';
 
-// Check if the user is logged in as Admin
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: ../php/login.php"); // Redirect to login page if not an Admin
+// Check if user is logged in and is admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../index.php");
     exit();
 }
 
-// DELETE FUNCTION (Direct in manage_inventory.php)
-if (isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
+// Handle success/error messages
+$success = $_SESSION['success'] ?? '';
+$error = $_SESSION['error'] ?? '';
+unset($_SESSION['success'], $_SESSION['error']);
 
-    // Delete product by ID
-    try {
-        $stmt = $pdo->prepare("DELETE FROM inventory WHERE id = :id");
-        $stmt->bindParam(':id', $delete_id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        // Redirect after deletion
-        header("Location: ../php/manage_inventory.php");
-        exit();
-    } catch (PDOException $e) {
-        die("Error deleting product: " . $e->getMessage());
-    }
+// Get all products from database
+try {
+    $query = "SELECT id, name, price, image_url, quantity FROM inventory";
+    $stmt = $pdo->query($query);
+    $products = $stmt->fetchAll();
+} catch(PDOException $e) {
+    $error = "Error fetching products: " . $e->getMessage();
 }
-
-// Fetch products including quantity
-$query = "SELECT id, product_name, price, image_url, quantity FROM inventory";
-$stmt = $pdo->query($query);
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Inventory</title>
-    <link rel="stylesheet" href="../css/inventory.css">
+    <title>Manage Inventory - Galorpot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <!-- Back button aligned to the left -->
-        <a href="../php/admin_dashboard.php" class="back-button">Back to Admin Dashboard</a>
-        
-        <div class="manage-title">
-            <h1>Manage Inventory</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="admin_dashboard.php">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homepage.php">View Site</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="manage_inventory.php">Manage Inventory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="manage_orders.php">Manage Orders</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </header>
-    
-    <!-- Center the Manage Inventory title above the Inventory List -->
-    <div style="text-align: center; margin-top: 40px;">
-        <h2>Inventory List</h2>
-        <table border="1" cellpadding="10" cellspacing="0" style="margin: 0 auto;">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Image</th>
-                    <th>Quantity</th>  <!-- Added Quantity Column -->
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($products)): ?>
-                    <?php foreach ($products as $product): ?>
-                        <tr>
-                            <td><?= $product['id']; ?></td>
-                            <td><?= htmlspecialchars($product['product_name']); ?></td>
-                            <td><?= htmlspecialchars($product['price']); ?></td>
-                            <td><img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['product_name']); ?>" width="100"></td>
-                            <td><?= htmlspecialchars($product['quantity']); ?></td>  <!-- Display Quantity -->
-                            <td>
-                                <a href="../php/editProduct.php?id=<?= $product['id']; ?>">Edit</a> | 
-                                <a href="/php/manage_inventory.php?delete_id=<?= $product['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="6" style="text-align: center;">No products found</td>  <!-- Adjust colspan -->
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+    </nav>
 
-        <br><br>
-        <a href="../php/add_inventory.php">
-            <button>Add New Product</button>
-        </a>
+    <div class="container mt-4">
+        <?php if ($success): ?>
+            <div class="alert alert-success">
+                <?php echo htmlspecialchars($success); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($error): ?>
+            <div class="alert alert-danger">
+                <?php echo htmlspecialchars($error); ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h2>Inventory Management</h2>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="add_product.php" class="btn btn-primary">Add New Product</a>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($products as $product): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($product['id']); ?></td>
+                        <td><?= htmlspecialchars($product['name']); ?></td>
+                        <td>₱<?= number_format($product['price'], 2); ?></td>
+                        <td><img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" width="100"></td>
+                        <td><?= htmlspecialchars($product['quantity']); ?></td>
+                        <td>
+                            <a href="edit_product.php?id=<?= $product['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="delete_product.php?id=<?= $product['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

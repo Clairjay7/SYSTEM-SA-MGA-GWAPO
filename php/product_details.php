@@ -1,203 +1,136 @@
 <?php
-// Get product ID from URL
-$product_id = isset($_GET['id']) ? $_GET['id'] : 0;
+session_start();
+require_once '../config/database.php';
 
-// Dummy data for the example (replace with database query)
-$products = [
-    1 => [
-        "name" => "Hot Wheels 1997 FE Lamborghini Countach Yellow 25th Ann.",
-        "price" => 100.75,
-        "description" => "A rare Lamborghini Countach model.",
-        "image" => "https://i.ebayimg.com/images/g/VgcAAeSwunZnoqL~/s-l960.webp"
-    ],
-    2 => [
-        "name" => "Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP",
-        "price" => 1000.75,
-        "description" => "A highly detailed Ferrari model.",
-        "image" => "https://i.ebayimg.com/images/g/iYcAAeSwCPtno9af/s-l960.webp"
-    ],
-    3 => [
-        "name" => "Hot Wheels 2000 Lamborghini Diablo Blue 5DOT Virtual Cars",
-        "price" => 555.75,
-        "description" => "A collectible Lamborghini Diablo model.",
-        "image" => "https://i.ebayimg.com/images/g/~KUAAOSwnEFfyX5~/s-l500.webp"
-    ],
-    4 => [
-        "name" => "Hot Wheels 1995 Nissan Skyline GT-R",
-        "price" => 250.50,
-        "description" => "A stunning Nissan Skyline GT-R model.",
-        "image" => "https://i.ebayimg.com/images/g/u8QAAeSwu~Jn25XQ/s-l500.webp"
-    ],
-    5 => [
-        "name" => "Hot Wheels 2020 Ford Mustang GT",
-        "price" => 450.99,
-        "description" => "A sleek Ford Mustang GT model.",
-        "image" => "https://i.ebayimg.com/images/g/nBEAAOSwjaZn7Ghc/s-l500.webp"
-    ],
-    6 => [
-        "name" => "Hot Wheels Batmobile",
-        "price" => 300.00,
-        "description" => "The iconic Batmobile model.",
-        "image" => "https://i.ebayimg.com/images/g/0~sAAOSwbqBgdmj-/s-l500.webp"
-    ],
-    7 => [
-        "name" => "Hot Wheels McLaren P1",
-        "price" => 650.00,
-        "description" => "A limited edition McLaren P1 model.",
-        "image" => "https://i.ebayimg.com/images/g/2RUAAOSwEdtndLbG/s-l1600.webp"
-    ],
-    8 => [
-        "name" => "Hot Wheels Porsche 911 Turbo",
-        "price" => 380.75,
-        "description" => "A detailed Porsche 911 Turbo model.",
-        "image" => "https://i.ebayimg.com/images/g/Zh8AAeSwYWxn8Mgg/s-l1600.webp"
-    ],
-    9 => [
-        "name" => "Hot Wheels Toyota Supra A80",
-        "price" => 420.25,
-        "description" => "A collectible Toyota Supra A80 model.",
-        "image" => "https://i.ebayimg.com/images/g/p9oAAOSw1LpnxSfv/s-l1600.webp"
-    ],
-    10 => [
-        "name" => "Hot Wheels 1994 Mazda RX-7",
-        "price" => 550.00,
-        "description" => "A rare Mazda RX-7 model.",
-        "image" => "https://i.ebayimg.com/images/g/pOkAAOSwNQNl-4Ng/s-l1600.webp"
-    ],
-    11 => [
-        "name" => "Hot Wheels Dodge Viper GTS",
-        "price" => 700.00,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/eeIAAeSwyvBn8McZ/s-l1600.webp"
-    ],
-    12 => [
-        "name" => "Hot Wheels 1969 Camaro Z28",
-        "price" => 320.00,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/H3EAAOSwjYVmoeH1/s-l1600.webp"
-    ],
-    13 => [
-        "name" => "Hot Wheels Ferrari 512 TR",
-        "price" => 850.75,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/-9YAAOSwF61mS5C7/s-l1600.webp"
-    ],
-    14 => [
-        "name" => "Hot Wheels Pagani Huayra",
-        "price" => 950.99,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/EL8AAeSw8gxn07r7/s-l960.webp"
-    ],
-    15 => [
-        "name" => "Hot Wheels Chevrolet Corvette ZR1",
-        "price" => 760.00,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/XWUAAOSwOVRnozkp/s-l1600.webp"
-    ],
-    16 => [
-        "name" => "Hot Wheels Aston Martin DB11",
-        "price" => 600.25,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/BoYAAeSwegVn68LO/s-l1600.webp"
-    ],
-    17 => [
-        "name" => "Hot Wheels Shelby GT500 Mustang",
-        "price" => 670.00,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/nBEAAOSwjaZn7Ghc/s-l1600.webp"
-    ],
-    18 => [
-        "name" => "Hot Wheels Dodge Charger RT",
-        "price" => 449.99,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/XQ8AAOSw~oJnerHf/s-l1600.webp"
-    ],
-    19 => [
-        "name" => "Hot Wheels BMW M3 E30",
-        "price" => 500.00,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/KOQAAOSwea5nxcJz/s-l1600.webp"
-    ],
-    20 => [
-        "name" => "Hot Wheels Subaru Impreza WRX STI",
-        "price" => 580.00,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/N4cAAOSwKj5ncIoe/s-l1600.webp"
-    ],
-    21 => [
-        "name" => "Hot Wheels Ferrari 488 GTB",
-        "price" => 700.99,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/BfMAAOSwMKdko7BH/s-l1600.webp"
-    ],
-    22 => [
-        "name" => "Hot Wheels Bugatti Chiron",
-        "price" => 1200.00,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/VfcAAOSwfDVn1BD4/s-l1600.webp"
-    ],
-    23 => [
-        "name" => "HHot Wheels Audi R8 V10",
-        "price" => 800.00,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/ScgAAOSwR7Blaecl/s-l1600.webp"
-    ],
-    24 => [
-        "name" => "Hot Wheels Lamborghini Huracan",
-        "price" => 900.00,
-        "description" => "wow.",
-        "image" => "https://i.ebayimg.com/images/g/vw8AAOSwshhnchkQ/s-l1600.webp"
-    ],
+if (!isset($_GET['id'])) {
+    header("Location: shop.php");
+    exit();
+}
 
+$product_id = $_GET['id'];
 
-];
+// Get product details
+try {
+    $stmt = $pdo->prepare("SELECT * FROM inventory WHERE id = ?");
+    $stmt->execute([$product_id]);
+    $product = $stmt->fetch();
 
-$product = isset($products[$product_id]) ? $products[$product_id] : null;
-
-if (!$product) {
-    echo "Product not found.";
-    exit;
+    if (!$product) {
+        header("Location: shop.php");
+        exit();
+    }
+} catch(PDOException $e) {
+    header("Location: shop.php");
+    exit();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($product['name']); ?> - Hot Wheels Store</title>
-    <link rel="stylesheet" href="../css/product_details.css">
+    <title><?= htmlspecialchars($product['name']); ?> - HOT4HAPART</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/homepage.css">
+    <style>
+        .product-detail-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .product-detail-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+        }
+        .product-image {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .product-info {
+            flex: 1;
+        }
+        .product-name {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            color: #ff4500;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .stock-info {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
-
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <h1>Hot Wheels Store</h1>
-        <ul>
-            <li><a href="homepage.php">Home</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="homepage.php">HOT4HAPART</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homepage.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.php">Shop</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <!-- Product Details Section -->
     <div class="product-detail-container">
         <div class="product-detail-card">
-            <img src="<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="product-detail-image">
-            <div class="product-detail-info">
-                <h2><?= htmlspecialchars($product['name']); ?></h2>
+            <img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="product-image">
+            <div class="product-info">
+                <h2 class="product-name"><?= htmlspecialchars($product['name']); ?></h2>
                 <p class="product-description"><?= htmlspecialchars($product['description']); ?></p>
-                <p class="product-price">$<?= number_format($product['price'], 2); ?></p>
+                <p class="product-price">₱<?= number_format($product['price'], 2); ?></p>
+                <p class="stock-info">In Stock: <?= htmlspecialchars($product['quantity']); ?> units</p>
+                
                 <div class="btn-container">
-                    <a href="shop.php" class="btn">Back to Shop</a>
-                    <form action="checkout.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="product_id" value="<?= $product_id; ?>">
-                        <button type="submit" class="btn">Buy Now</button>
+                    <form action="checkout.php" method="POST">
+                        <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                        <input type="hidden" name="name" value="<?= htmlspecialchars($product['name']); ?>">
+                        <input type="hidden" name="price" value="<?= $product['price']; ?>">
+                        <button type="submit" class="btn btn-primary buy-button">Buy Now</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</body>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

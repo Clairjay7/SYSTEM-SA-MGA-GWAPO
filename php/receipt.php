@@ -1,25 +1,27 @@
 <?php
 session_start();
-include '../php/connect.php'; // Ensure the connect.php file is included for database connection
+require_once '../config/database.php';
 
-// Check if order_id is provided
-if (!isset($_GET['order_id'])) {
-    echo "No order ID found.";
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+error_log("Receipt page accessed");
+error_log("Session data: " . print_r($_SESSION, true));
+
+// Check if there's order data in session
+if (!isset($_SESSION['order_details'])) {
+    error_log("No order details in session");
+    header("Location: shop.php");
     exit();
 }
 
-$orderId = $_GET['order_id'];
+$order = $_SESSION['order_details'];
+error_log("Order details retrieved: " . print_r($order, true));
 
-// Fetch order details from the database
-$stmt = $pdo->prepare("SELECT * FROM orders WHERE id = ?");
-$stmt->bindParam(1, $orderId, PDO::PARAM_INT);
-$stmt->execute();
-$order = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$order) {
-    echo "Order not found.";
-    exit();
-}
+// Clear the order details from session immediately
+unset($_SESSION['order_details']);
+session_write_close();
 ?>
 
 <!DOCTYPE html>
@@ -27,41 +29,108 @@ if (!$order) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receipt</title>
-    <link rel="stylesheet" href="../css/receipt.css">
+    <title>Order Receipt - Hot Wheels Store</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .receipt-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+        .receipt-details {
+            margin: 1rem 0;
+        }
+        .receipt-details p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        .receipt-total {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+        .receipt-footer {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .btn-back {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #ff4500;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+        .btn-back:hover {
+            background: #ff6f00;
+        }
+        .order-id {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        @media print {
+            .navbar, .btn-back {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>Hot Wheels Store</h1>
+        <ul>
+            <li><a href="shop.php">Back to Shop</a></li>
+            <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
+                <li><a href="logout.php">Logout</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+
     <div class="receipt-container">
-        <h2>Order Receipt</h2>
+        <div class="receipt-header">
+            <h2>Order Receipt</h2>
+            <p class="order-id">Order ID: <?= htmlspecialchars($order['order_id']) ?></p>
+            <p><?= date('F j, Y g:i A') ?></p>
+        </div>
 
-        <p><strong>Order ID:</strong> <?php echo $order['id']; ?></p>
-        <p><strong>Customer Name:</strong> <?php echo htmlspecialchars($order['customer_name']); ?></p>
-        <p><strong>Product:</strong> <?php echo htmlspecialchars($order['product_name']); ?></p>
-        <p><strong>Quantity:</strong> <?php echo $order['quantity']; ?></p>
-        <p><strong>Price:</strong> $<?php echo number_format($order['price'], 2); ?></p>
-        
-        <p><strong>Payment Method:</strong> 
-            <?php 
-                switch ($order['payment_method']) {
-                    case 'Gcash':
-                        echo 'Gcash';
-                        break;
-                    case 'Paypal':
-                        echo 'Paypal';
-                        break;
-                    case 'Cash':
-                        echo 'Cash'; // Just display 'Cash' without 'on Delivery' if 'Cash' is stored in the database
-                        break;
-                    default:
-                        echo 'Unknown Payment Method';
-                }
-            ?>
-        </p>
+        <div class="receipt-details">
+            <p><strong>Customer Name:</strong> <?= htmlspecialchars($order['customer_name']) ?></p>
+            <p><strong>Product:</strong> <?= htmlspecialchars($order['product_name']) ?></p>
+            <p><strong>Quantity:</strong> <?= htmlspecialchars($order['quantity']) ?></p>
+            <p><strong>Price per item:</strong> $<?= number_format($order['price'], 2) ?></p>
+            <p><strong>Payment Method:</strong> <?= htmlspecialchars($order['payment_method']) ?></p>
+            
+            <div class="receipt-total">
+                <p><strong>Total Amount:</strong> $<?= number_format($order['total_amount'], 2) ?></p>
+            </div>
+        </div>
 
-        <p><strong>Status:</strong> <?php echo $order['status']; ?></p>
-
-        <h3>Thank you for your purchase!</h3>
-        <a href="../php/homepage.php">Back to Homepage</a>
+        <div class="receipt-footer">
+            <p>Thank you for shopping with Hot Wheels Store!</p>
+            <p>Please keep this receipt for your records.</p>
+            <a href="shop.php" class="btn-back">Continue Shopping</a>
+        </div>
     </div>
+
+    <script>
+        // Prevent going back to checkout page
+        window.history.pushState(null, '', window.location.href);
+        window.addEventListener('popstate', function() {
+            window.location.href = 'shop.php';
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,321 @@
+.product-showcase {
+    padding: 4rem 0;
+    background: #f8f9fa;
+}
+
+.product-showcase h2 {
+    color: #333;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-card {
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+}
+
+.product-image {
+    height: 250px;
+    object-fit: contain;
+    background: #f8f9fa;
+    padding: 20px;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    color: #e31837;
+    font-weight: 600;
+}
+
+.product-stock {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.buy-button {
+    background: #e31837;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.buy-button:hover {
+    background: #c41230;
+    color: white;
+}
+
+.banner-section {
+    background: linear-gradient(135deg, #00a8e8 0%, #0077cc 100%);
+    color: white;
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.banner-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.banner-text {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.banner-button {
+    background: #e31837;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.banner-button:hover {
+    background: #c41230;
+    transform: scale(1.05);
+    color: white;
+}
+
+.banner-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar {
+    background: #1a1a1a !important;
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff !important;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.8) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+}
+
+.welcome-section {
+    background: linear-gradient(135deg, #00a8e8 0%, #0077cc 100%);
+    color: white;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.welcome-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.welcome-text {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.welcome-buttons .btn {
+    padding: 15px 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease;
+}
+
+.welcome-buttons .btn:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .banner-title {
+        font-size: 2rem;
+    }
+    
+    .banner-section {
+        padding: 40px 0;
+    }
+    
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Featured Cards Styles */
+.featured-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.featured-card:hover {
+    transform: translateY(-5px);
+}
+
+.featured-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.featured-card .card-body {
+    padding: 1.5rem;
+}
+
+.featured-card h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.featured-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.featured-card .btn {
+    background: linear-gradient(135deg, #e31837 0%, #c41230 100%);
+    border: none;
+    padding: 0.75rem 2rem;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.featured-card .btn:hover {
+    background: linear-gradient(135deg, #c41230 0%, #a30f28 100%);
+    transform: translateY(-2px);
+}
+
+/* Challenge Section Styles */
+.challenge-section {
+    background: #1a1a1a;
+    color: white;
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.challenge-content {
+    padding-right: 2rem;
+}
+
+.challenge-logo {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.challenge-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.challenge-subtitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #ff6b00;
+}
+
+.challenge-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.challenge-button {
+    display: inline-block;
+    background: white;
+    color: #1a1a1a;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.challenge-button:hover {
+    background: #ff6b00;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.challenge-image {
+    position: relative;
+}
+
+.challenge-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+@media (max-width: 991px) {
+    .challenge-content {
+        padding-right: 0;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .challenge-logo {
+        margin: 0 auto 2rem;
+    }
+} 

@@ -1,89 +1,245 @@
 <?php
 session_start();
+require_once '../config/database.php';
 
-// Check if the user is logged in or a guest
-if (!isset($_SESSION['user_id']) && !isset($_SESSION['guest'])) {
-    header("Location: ../php/index.php"); // Redirect to homepage if not logged in
-    exit();
+// Get sort and search parameters
+$sort = $_GET['sort'] ?? 'newest';
+$search = $_GET['search'] ?? '';
+
+// Build the SQL query based on sort and search
+$sql = "SELECT * FROM inventory WHERE quantity > 0";
+
+// Add search condition if search term is provided
+if (!empty($search)) {
+    $sql .= " AND (name LIKE :search OR description LIKE :search)";
 }
 
-// Your static product array
-$products = [
-    ['id' => 1, 'name' => 'Hot Wheels 1997 FE Lamborghini Countach Yellow 25th Ann.', 'price' => 100.75, 'image_url' => 'https://i.ebayimg.com/images/g/VgcAAeSwunZnoqL~/s-l960.webp'],
-    ['id' => 2, 'name' => 'Hot Wheels 1999 Ferrari F355 Berlinetta Red 5SP', 'price' => 1000.75, 'image_url' => 'https://i.ebayimg.com/images/g/iYcAAeSwCPtno9af/s-l960.webp'],
-    ['id' => 3, 'name' => 'Hot Wheels 2000 Lamborghini Diablo Blue 5DOT Virtual Cars', 'price' => 555.75, 'image_url' => 'https://i.ebayimg.com/images/g/~KUAAOSwnEFfyX5~/s-l500.webp'],
-    ['id' => 4, 'name' => 'Hot Wheels 1995 Nissan Skyline GT-R', 'price' => 250.50, 'image_url' => 'https://i.ebayimg.com/images/g/u8QAAeSwu~Jn25XQ/s-l500.webp'],
-    ['id' => 5, 'name' => 'Hot Wheels 2020 Ford Mustang GT', 'price' => 450.99, 'image_url' => 'https://i.ebayimg.com/images/g/nBEAAOSwjaZn7Ghc/s-l500.webp'],
-    ['id' => 6, 'name' => 'Hot Wheels Batmobile', 'price' => 300.00, 'image_url' => 'https://i.ebayimg.com/images/g/0~sAAOSwbqBgdmj-/s-l500.webp'],
-    ['id' => 7, 'name' => 'Hot Wheels McLaren P1', 'price' => 650.00, 'image_url' => 'https://i.ebayimg.com/images/g/2RUAAOSwEdtndLbG/s-l1600.webp'],
-    ['id' => 8, 'name' => 'Hot Wheels Porsche 911 Turbo', 'price' => 380.75, 'image_url' => 'https://i.ebayimg.com/images/g/Zh8AAeSwYWxn8Mgg/s-l1600.webp'],
-    ['id' => 9, 'name' => 'Hot Wheels Toyota Supra A80', 'price' => 420.25, 'image_url' => 'https://i.ebayimg.com/images/g/p9oAAOSw1LpnxSfv/s-l1600.webp'],
-    ['id' => 10, 'name' => 'Hot Wheels 1994 Mazda RX-7', 'price' => 550.00, 'image_url' => 'https://i.ebayimg.com/images/g/pOkAAOSwNQNl-4Ng/s-l1600.webp'],
-    ['id' => 11, 'name' => 'Hot Wheels Dodge Viper GTS', 'price' => 700.50, 'image_url' => 'https://i.ebayimg.com/images/g/eeIAAeSwyvBn8McZ/s-l1600.webp'],
-    ['id' => 12, 'name' => 'Hot Wheels 1969 Camaro Z28', 'price' => 320.00, 'image_url' => 'https://i.ebayimg.com/images/g/H3EAAOSwjYVmoeH1/s-l1600.webp'],
-    ['id' => 13, 'name' => 'Hot Wheels Ferrari 512 TR', 'price' => 850.75, 'image_url' => 'https://i.ebayimg.com/images/g/-9YAAOSwF61mS5C7/s-l1600.webp'],
-    ['id' => 14, 'name' => 'Hot Wheels Pagani Huayra', 'price' => 950.99, 'image_url' => 'https://i.ebayimg.com/images/g/EL8AAeSw8gxn07r7/s-l960.webp'],
-    ['id' => 15, 'name' => 'Hot Wheels Chevrolet Corvette ZR1', 'price' => 760.00, 'image_url' => 'https://i.ebayimg.com/images/g/XWUAAOSwOVRnozkp/s-l1600.webp'],
-    ['id' => 16, 'name' => 'Hot Wheels Aston Martin DB11', 'price' => 600.25, 'image_url' => 'https://i.ebayimg.com/images/g/BoYAAeSwegVn68LO/s-l1600.webp'],
-    ['id' => 17, 'name' => 'Hot Wheels Shelby GT500 Mustang', 'price' => 670.00, 'image_url' => 'https://i.ebayimg.com/images/g/nBEAAOSwjaZn7Ghc/s-l1600.webp'],
-    ['id' => 18, 'name' => 'Hot Wheels Dodge Charger RT', 'price' => 440.99, 'image_url' => 'https://i.ebayimg.com/images/g/XQ8AAOSw~oJnerHf/s-l1600.webp'],
-    ['id' => 19, 'name' => 'Hot Wheels BMW M3 E30', 'price' => 500.00, 'image_url' => 'https://i.ebayimg.com/images/g/KOQAAOSwea5nxcJz/s-l1600.webp'],
-    ['id' => 20, 'name' => 'Hot Wheels Subaru Impreza WRX STI', 'price' => 580.00, 'image_url' => 'https://i.ebayimg.com/images/g/N4cAAOSwKj5ncIoe/s-l1600.webp'],
-    ['id' => 21, 'name' => 'Hot Wheels Ferrari 488 GTB', 'price' => 700.99, 'image_url' => 'https://i.ebayimg.com/images/g/BfMAAOSwMKdko7BH/s-l1600.webp'],
-    ['id' => 22, 'name' => 'Hot Wheels Bugatti Chiron', 'price' => 1200.00, 'image_url' => 'https://i.ebayimg.com/images/g/VfcAAOSwfDVn1BD4/s-l1600.webp'],
-    ['id' => 23, 'name' => 'Hot Wheels Audi R8 V10', 'price' => 800.00, 'image_url' => 'https://i.ebayimg.com/images/g/ScgAAOSwR7Blaecl/s-l1600.webp'],
-    ['id' => 24, 'name' => 'Hot Wheels Lamborghini Huracan', 'price' => 900.00, 'image_url' => 'https://i.ebayimg.com/images/g/vw8AAOSwshhnchkQ/s-l1600.webp']
-];
+// Add sorting
+$sql .= " ORDER BY ";
+switch ($sort) {
+    case 'price-low':
+        $sql .= "price ASC";
+        break;
+    case 'price-high':
+        $sql .= "price DESC";
+        break;
+    case 'name':
+        $sql .= "name ASC";
+        break;
+    default: // newest
+        $sql .= "created_at DESC";
+}
+
+// Get all products from database
+try {
+    $stmt = $pdo->prepare($sql);
+    if (!empty($search)) {
+        $searchTerm = "%{$search}%";
+        $stmt->bindParam(':search', $searchTerm);
+    }
+    $stmt->execute();
+    $products = $stmt->fetchAll();
+} catch(PDOException $e) {
+    $error = "Error fetching products: " . $e->getMessage();
+}
+
+// Check if user is logged in or is a guest
+$logged_in = isset($_SESSION['user_id']);
+$is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+$is_guest = isset($_SESSION['guest']);
+
+// If not logged in and not a guest, redirect to login
+if (!$logged_in && !$is_guest) {
+    header("Location: ../index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - Hot Wheels Store</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/shop.css">
+    <title>Shop - HOT4HAPART</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/homepage.css">
+    <style>
+        .shop-header {
+            background: linear-gradient(135deg, #e31837 0%, #c41230 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+        }
+        
+        .shop-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .shop-content {
+            flex: 1;
+        }
+        
+        .shop-logo {
+            max-width: 200px;
+            margin-left: 40px;
+        }
+        
+        .shop-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .shop-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .filter-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .product-grid {
+            padding: 40px 0;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
 </head>
-
 <body>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <h1>Hot Wheels Store</h1>
-        <ul>
-            <li><a href="../php/homepage.php">Home</a></li>
-            <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
-                <li><a href="logout.php">Logout</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
-
-    <div class="shop-container">
-        <h2>Shop Our Hot Wheels Collection</h2>
-
-        <!-- Product List -->
-         <!-- filepath: f:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\php\shop.php -->
-<div class="product-list">
-    <?php foreach ($products as $product): ?>
-        <div class="product-card">
-            <img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="product-image">
-            <h3><?= htmlspecialchars($product['name']); ?></h3>
-            <p class="product-price">$<?= number_format($product['price'], 2); ?></p>
-            <div class="btn-container">
-                <a href="product_details.php?id=<?= $product['id']; ?>" class="btn">View Details</a>
-                <form action="checkout.php" method="POST" style="display:inline;">
-                    <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
-                    <button type="submit" class="btn">Buy</button>
-                </form>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="homepage.php">HOT4HAPART</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homepage.php">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <?php if ($is_admin): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_dashboard.php">Admin Dashboard</a>
+                    </li>
+                    <?php endif; ?>
+                    <?php if ($logged_in): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
             </div>
         </div>
-    <?php endforeach; ?>
-</div>
-        
+    </nav>
+
+    <!-- Shop Header -->
+    <header class="shop-header">
+        <div class="container">
+            <div class="shop-content">
+                <h1 class="shop-title">HOT4HAPART SHOP</h1>
+                <p class="shop-description">Browse our extensive collection of die-cast cars and exclusive collectibles</p>
+            </div>
+            <img src="../grrr.png" alt="HOT4HAPART Logo" class="shop-logo">
+        </div>
+    </header>
+
+    <!-- Main Shop Content -->
+    <div class="container">
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <form id="filterForm" class="row g-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="sort" class="form-label">Sort By</label>
+                        <select class="form-select" id="sort" name="sort">
+                            <option value="newest" <?php echo $sort === 'newest' ? 'selected' : ''; ?>>Newest First</option>
+                            <option value="price-low" <?php echo $sort === 'price-low' ? 'selected' : ''; ?>>Price: Low to High</option>
+                            <option value="price-high" <?php echo $sort === 'price-high' ? 'selected' : ''; ?>>Price: High to Low</option>
+                            <option value="name" <?php echo $sort === 'name' ? 'selected' : ''; ?>>Name: A to Z</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="search" class="form-label">Search</label>
+                        <input type="text" class="form-control" id="search" name="search" 
+                               placeholder="Search products..." value="<?php echo htmlspecialchars($search); ?>">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Product Grid -->
+        <section class="product-grid">
+            <?php if (empty($products)): ?>
+                <div class="no-results">
+                    <h3>No products found</h3>
+                    <p>Try adjusting your search or filter criteria</p>
+                </div>
+            <?php else: ?>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <?php foreach ($products as $product): ?>
+                <div class="col">
+                    <div class="card product-card">
+                        <?php if ($product['image_url']): ?>
+                            <img src="<?php echo htmlspecialchars($product['image_url']); ?>" class="card-img-top product-image" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                        <?php endif; ?>
+                        <div class="card-body">
+                            <h5 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h5>
+                            <p class="card-text"><?php echo htmlspecialchars($product['description']); ?></p>
+                            <p class="product-price">₱<?php echo number_format($product['price'], 2); ?></p>
+                            <p class="product-stock">Stock: <?php echo htmlspecialchars($product['quantity']); ?> units</p>
+                            <div class="d-grid gap-2">
+                                <a href="product_details.php?id=<?php echo $product['id']; ?>" class="btn btn-outline-primary">View Details</a>
+                                <form action="checkout.php" method="POST">
+                                    <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                    <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name']); ?>">
+                                    <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+                                    <button type="submit" class="btn buy-button w-100">Buy Now</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+        </section>
     </div>
 
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Auto-submit form when sort or search changes
+        document.getElementById('sort').addEventListener('change', function() {
+            document.getElementById('filterForm').submit();
+        });
 
+        // Add debounce for search to avoid too many requests
+        let searchTimeout;
+        document.getElementById('search').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                document.getElementById('filterForm').submit();
+            }, 500); // Wait 500ms after user stops typing
+        });
+    </script>
+</body>
 </html>

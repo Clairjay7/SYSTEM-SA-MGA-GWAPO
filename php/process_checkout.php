@@ -1,63 +1,103 @@
 <?php
 session_start();
-include '../php/connect.php'; // Connect to DB
+require_once '../config/database.php';
 
-// Check if required POST data is set
-if (isset($_POST['product_id'], $_POST['product_name'], $_POST['product_price'], $_POST['quantity'], $_POST['payment_method'])) {
-    $product_id = $_POST['product_id'];
-    $product_name = $_POST['product_name'];
-    $product_price = (float) $_POST['product_price']; // convert to float
-    $quantity = (int) $_POST['quantity'];             // convert to int
-    $total_price = $product_price * $quantity;
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-    // Set customer name
-    $customer_name = isset($_SESSION['user_id']) ? "User #" . $_SESSION['user_id'] : "Guest";
-
-    // Get payment method from POST data
-    $payment_method = $_POST['payment_method'];  // This will get the selected payment method from the form
-
-    // Set order status based on payment method
-    if ($payment_method == 'Cash') {
-        $status = "Completed";  // If payment is cash, set status as completed
-    } else {
-        $status = "Pending";  // For Paypal and Gcash, keep the status as Pending
-    }
-
-    // Ensure that payment method is one of the expected values
-    $valid_payment_methods = ['Cash', 'Paypal', 'Gcash'];
-    if (!in_array($payment_method, $valid_payment_methods)) {
-        echo "Invalid payment method!";
-        exit();
-    }
-
-    // Start the transaction
-    $pdo->beginTransaction();
-
-    try {
-        // Insert order details into orders table
-        $stmt = $pdo->prepare("INSERT INTO orders (customer_name, product_name, quantity, price, payment_method, status) 
-                               VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$customer_name, $product_name, $quantity, $total_price, $payment_method, $status]);
-
-        // Get the last inserted order ID
-        $order_id = $pdo->lastInsertId();
-
-        // Update inventory: Reduce stock after order is placed
-        $stmt = $pdo->prepare("UPDATE inventory SET quantity = quantity - ? WHERE id = ?");
-        $stmt->execute([$quantity, $product_id]);
-
-        // Commit the transaction
-        $pdo->commit();
-
-        // Redirect to receipt page
-        header("Location: receipt.php?order_id=" . $order_id);
-        exit();
-    } catch (Exception $e) {
-        // If an error occurs, rollback the transaction
-        $pdo->rollBack();
-        echo "Error: " . $e->getMessage();
-    }
-} else {
-    echo "Invalid form submission!";
+// Verify POST request
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $_SESSION['error'] = "Invalid request method";
+    header("Location: shop.php");
     exit();
 }
+
+// Verify required fields
+$required_fields = ['product_id', 'customer_name', 'quantity', 'payment_method', 'name', 'price'];
+foreach ($required_fields as $field) {
+    if (!isset($_POST[$field]) || empty($_POST[$field])) {
+        $_SESSION['error'] = "Missing required field: " . $field;
+        header("Location: checkout.php");
+        exit();
+    }
+}
+
+// Get form data
+$product_id = $_POST['product_id'];
+$customer_name = $_POST['customer_name'];
+$quantity = (int)$_POST['quantity'];
+$payment_method = $_POST['payment_method'];
+$product_name = $_POST['name'];
+$price = (float)$_POST['price'];
+
+try {
+    // Start transaction
+    $pdo->beginTransaction();
+
+    // Check if product exists and has enough stock
+    $stmt = $pdo->prepare("SELECT quantity FROM inventory WHERE id = ? AND quantity >= ?");
+    $stmt->execute([$product_id, $quantity]);
+    $product = $stmt->fetch();
+
+    if (!$product) {
+        throw new Exception("Product not available or insufficient stock");
+    }
+
+    // Calculate total amount
+    $total_amount = $price * $quantity;
+
+    // Create order with pending status
+    $stmt = $pdo->prepare("
+        INSERT INTO orders (
+            product_id, 
+            customer_name, 
+            quantity, 
+            price, 
+            payment_method, 
+            status
+        ) VALUES (?, ?, ?, ?, ?, 'pending')
+    ");
+    
+    $stmt->execute([
+        $product_id,
+        $customer_name,
+        $quantity,
+        $total_amount,
+        $payment_method
+    ]);
+    
+    $order_id = $pdo->lastInsertId();
+
+    // Commit transaction
+    $pdo->commit();
+
+    // Store order details in session
+    $_SESSION['order_details'] = [
+        'order_id' => $order_id,
+        'customer_name' => $customer_name,
+        'product_name' => $product_name,
+        'quantity' => $quantity,
+        'price' => $price,
+        'total_amount' => $total_amount,
+        'payment_method' => $payment_method
+    ];
+
+    // Ensure the session is written
+    session_write_close();
+
+    // Redirect to receipt
+    header("Location: receipt.php");
+    exit();
+
+} catch (Exception $e) {
+    // Rollback transaction on error
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+    
+    $_SESSION['error'] = "Error processing order: " . $e->getMessage();
+    header("Location: checkout.php");
+    exit();
+}
+?>
