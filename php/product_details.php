@@ -167,29 +167,37 @@ if (!$product) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($product['name']); ?> - Hot Wheels Store</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/product_details.css">
 </head>
 
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <h1>Hapart 4 Speed</h1>
+        <h1>Hot Wheels Store</h1>
         <ul>
             <li><a href="homepage.php">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="shop.php">Shop</a></li>
             <li><a href="logout.php">Logout</a></li>
-            <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
-            <?php endif; ?>
         </ul>
     </nav>
 
+    <!-- Product Details Section -->
     <div class="product-detail-container">
-        <h2><?= htmlspecialchars($product['name']); ?></h2>
-        <img src="<?= $product['image']; ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="product-image" />
-        <p><?= htmlspecialchars($product['description']); ?></p>
-        <p class="price">$<?= number_format($product['price'], 2); ?></p>
+        <div class="product-detail-card">
+            <img src="<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="product-detail-image">
+            <div class="product-detail-info">
+                <h2><?= htmlspecialchars($product['name']); ?></h2>
+                <p class="product-description"><?= htmlspecialchars($product['description']); ?></p>
+                <p class="product-price">$<?= number_format($product['price'], 2); ?></p>
+                <div class="btn-container">
+                    <a href="shop.php" class="btn">Back to Shop</a>
+                    <form action="checkout.php" method="POST" style="display:inline;">
+                        <input type="hidden" name="product_id" value="<?= $product_id; ?>">
+                        <button type="submit" class="btn">Buy Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>

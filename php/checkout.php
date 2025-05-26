@@ -62,67 +62,64 @@ if (isset($_POST['product_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Checkout - Hot Wheels Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Checkout - Hot Wheels Store</title>
     <link rel="stylesheet" href="../css/checkout.css">
 </head>
+
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>Hot Wheels Store</h1>
+        <ul>
+            <li><a href="homepage.php">Home</a></li>
 
-<!-- Navigation Bar -->
-<nav class="navbar">
-    <h1>Hapart 4 Speed</h1>
-    <ul>
-        <li><a href="../php/homepage.php">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="shop.php">Shop</a></li>
-        <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
-            <li><a href="../php/logout.php">Logout</a></li>
-        <?php endif; ?>
-    </ul>
-</nav>
+            <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
+                <li><a href="logout.php">Logout</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
 
-<div class="checkout-container">
-    <h2>Checkout</h2>
+    <!-- Checkout Section -->
+    <div class="checkout-container">
+        <div class="checkout-card">
+            <div class="product-summary">
+                <img src="<?= $product_image; ?>" alt="<?= $product_name; ?>" class="product-image">
+                <h2><?= $product_name; ?></h2>
+                <p class="product-price">$<?= $product_price; ?></p>
+            </div>
 
-    <!-- Product Summary -->
-    <div class="product-summary">
-        <img src="<?= $product_image; ?>" alt="<?= $product_name; ?>">
-        <h3><?= $product_name; ?></h3>
-        <p>$<?= $product_price; ?></p>
-    </div>
+            <form class="checkout-form" action="process_checkout.php" method="POST">
+                <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                <input type="hidden" name="product_name" value="<?= $product_name; ?>">
+                <input type="hidden" name="product_price" value="<?= $product_price; ?>">
 
-    <!-- Checkout Form -->
-    <form class="checkout-form" action="process_checkout.php" method="POST">
-        <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
-        <input type="hidden" name="product_name" value="<?= $product_name; ?>">
-        <input type="hidden" name="product_price" value="<?= $product_price; ?>">
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                </div>
 
-        <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                <div class="form-group">
+                    <label for="payment_method">Payment Method:</label>
+                    <select name="payment_method" id="payment_method" required>
+                        <option value="">-- Select Payment Method --</option>
+                        <option value="Gcash">Gcash</option>
+                        <option value="Paypal">Paypal</option>
+                        <option value="Cash">Cash</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">Complete Purchase</button>
+            </form>
+
+            <div class="back-home-container">
+                <a href="shop.php" class="btn-back-home">← Back to Shop</a>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="payment_method">Payment Method:</label>
-            <select name="payment_method" id="payment_method" required>
-                <option value="">-- Select Payment Method --</option>
-                <option value="Gcash">Gcash</option>
-                <option value="Paypal">Paypal</option>
-                <option value="Cash">Cash</option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn-submit">Complete Purchase</button>
-    </form>
-
-    <div class="back-home-container">
-        <a href="shop.php" class="btn-back-home">← Back to Shop</a>
     </div>
-</div>
-
 </body>
+
 </html>

@@ -7,35 +7,43 @@
 
 /* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #000428, #004e92); /* Dark blue gradient */
+    color: #fff;
     padding: 20px;
 }
 
 /* Header Styling */
 header {
+    background: linear-gradient(135deg, #ff4500, #ff6f00); /* Hot Wheels-inspired gradient */
+    color: white;
+    padding: 40px 20px; /* Increased padding to make the header larger */
     display: flex;
-    justify-content: flex-start; /* Align the back button to the left */
     align-items: center;
+    justify-content: center; /* Center the title horizontally */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative; /* Allow positioning of elements */
+    border-radius: 10px;
     margin-bottom: 30px;
 }
 
 header h1 {
-    font-size: 36px;
-    color: #333;
-    margin-left: -230px; /* Add some margin to the right of the back button */
+    font-size: 42px; /* Increased font size for the title */
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 40%; /* Adjusted to move the title slightly higher */
+    transform: translate(-50%, -50%); /* Center the title horizontally and vertically */
 }
-
-.manage-title {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
 /* Back Button Styling */
 .back-button {
-    background-color: #007bff;
+    position: absolute;
+    left: 20px; /* Position the back button on the left */
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -43,74 +51,135 @@ header h1 {
     cursor: pointer;
     border-radius: 5px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none; /* Remove underline for links */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .back-button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-a {
-    text-decoration: none;
+/* Inventory Container */
+.inventory-container {
+    padding: 20px;
+    margin: 20px auto;
+    background: linear-gradient(135deg, #ffffff, #f3f3f3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 1200px;
+    color: #333;
 }
 
-/* Button Styling */
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+/* Section Title */
+h2 {
     text-align: center;
-    margin: 10px;
-}
-
-button:hover {
-    background-color: #45a049;
+    color: #ff4500; /* Hot Wheels orange */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    font-size: 28px;
 }
 
 /* Table Styling */
 table {
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
     border-collapse: collapse;
-    background-color: white;
+    margin-top: 20px;
+    background: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-th, td {
-    padding: 12px;
+table th, table td {
+    padding: 15px;
     text-align: center;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
-th {
-    background-color: #4CAF50;
+table th {
+    background: linear-gradient(135deg, #ff4500, #ff6f00); /* Hot Wheels-inspired gradient */
     color: white;
     font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-td {
+table td {
     font-size: 16px;
+    color: #333;
 }
 
-tr:nth-child(even) {
+table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-tr:hover {
-    background-color: #ddd;
+table tr:hover {
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    color: white;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Links in the table */
+/* Links in the Table */
 a {
-    color: #007bff;
+    color: #ff4500;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 a:hover {
+    color: #ff6f00;
+    transform: scale(1.1);
     text-decoration: underline;
+}
+
+/* Add Inventory Button */
+.add-inventory-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #4CAF50, #81C784); /* Green gradient */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px auto;
+    text-decoration: none; /* Remove underline for links */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-inventory-button:hover {
+    background: linear-gradient(135deg, #45a049, #66bb6a); /* Lighter green on hover */
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Action Buttons (Edit/Delete) */
+.action-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none; /* Remove underline for links */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 5px;
+}
+
+.action-button:hover {
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }

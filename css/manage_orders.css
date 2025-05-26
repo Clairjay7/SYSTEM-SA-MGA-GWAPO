@@ -1,25 +1,47 @@
- /* manage_orders.css */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #000428, #004e92); /* Dark blue gradient */
+    color: #fff;
     margin: 0;
     padding: 0;
 }
 
+/* Header Styling */
 header {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #ff4500, #ff6f00); /* Hot Wheels-inspired gradient */
     color: white;
-    padding: 10px 20px;
-    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the title horizontally */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative; /* Allow positioning of the logout button */
 }
 
 header h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 36px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Logout Button */
+.logout-form {
+    position: absolute;
+    right: 20px; /* Position the logout button on the right */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .logout {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -27,65 +49,163 @@ header h1 {
     cursor: pointer;
     border-radius: 5px;
     text-align: center;
-    margin: 10px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.logout:hover {
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Back to Admin Dashboard Button */
+.back-button {
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px; /* Add spacing below the button */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block; /* Ensure it behaves like a button */
+    text-decoration: none; /* Remove underline for links */
+}
+
+.back-button:hover {
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Orders Container */
 .orders-container {
     padding: 20px;
     margin: 20px auto;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    background: linear-gradient(135deg, #ffffff, #f3f3f3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
     width: 90%;
     max-width: 1200px;
-}
-
-h2 {
-    text-align: center;
     color: #333;
 }
 
+/* Section Title */
+h2 {
+    text-align: center;
+    color: #ff4500; /* Hot Wheels orange */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 table th, table td {
-    padding: 12px;
+    padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
 table th {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
     color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+table td {
+    font-size: 16px;
+    color: #333;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
 table tr:hover {
-    background-color: #f1f1f1;
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    color: white;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-button {
+/* Status Label Styling */
+.status-label {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+}
+
+.status-label.pending {
+    background: linear-gradient(135deg, #ffa500, #ffcc00); /* Yellow gradient for Pending */
+}
+
+.status-label.completed {
+    background: linear-gradient(135deg, #4caf50, #81c784); /* Green gradient for Completed */
+}
+
+/* Dropdown Styling */
+.status-dropdown {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.status-dropdown:focus {
+    border-color: #ff4500;
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+}
+
+/* Update Button Styling */
+.pending-button {
     padding: 8px 16px;
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    text-align: center;
     font-size: 14px;
-    transition: background-color 0.3s;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pending-button:hover {
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* General Button Styling */
+button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-    background-color: #45a049;
-}
-
-a {
-    text-decoration: none;
-}
-
-a button {
-    margin: 5px;
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }

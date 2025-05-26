@@ -1,3 +1,4 @@
+<!-- filepath: f:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\php\homepage.php -->
 <?php
 session_start();
 
@@ -11,99 +12,89 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['guest'])) {
 if (isset($_SESSION['guest'])) {
     $username = "Guest"; // Set a default username for the guest user
 }
-
-// Fetch advertising content from the API (if needed)
-function get_ads_from_api() {
-    $url = "http://localhost/SYSTEM-SA-MGA-GWAPO/api/ads.php"; // Adjust API URL as needed
-    $response = @file_get_contents($url);  // Use @ to suppress warnings temporarily
-
-    if ($response === FALSE) {
-        // Log or handle the error if the API call fails
-        error_log("Error fetching ads from API: $url");
-        return []; // Return an empty array if API call fails
-    }
-
-    $data = json_decode($response, true); // Decode JSON response to an array
-
-    // Check if the data is valid
-    if (is_array($data)) {
-        return $data;
-    } else {
-        error_log("Invalid data received from API: " . print_r($data, true));
-        return []; // Return an empty array if data is invalid
-    }
-}
-
-$ads = get_ads_from_api(); // Fetch dynamic ads
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hot Wheels Store - Advertising</title>
+    <title>Homepage</title>
     <link rel="stylesheet" href="../css/dashboard.css">
-    <script src="../js/script.js" defer></script>
-    <link rel="stylesheet" href="../css/ads.css"> <!-- Link to external CSS file for ads -->
 </head>
-
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <h1>Hapart 4 Speed</h1>
-        <ul>
+        <div class="logo">Hot Wheels</div>
+        <ul class="nav-links">
             <li><a href="homepage.php">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="../php/shop.php">Shop</a></li>
-            <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
-                <li><a href="logout.php">Logout</a></li>
-            <?php endif; ?>
+            <li><a href="profile.php">Profile</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
 
-    <div class="dashboard-container">
-        <section class="dashboard-buttons">
-            <!-- Back to Admin Dashboard Button -->
-            <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'admin'): ?>
-                <a href="admin_dashboard.php" class="back-to-dashboard-btn">Back to Admin Dashboard</a>
-            <?php endif; ?>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Hot Wheels</h1>
+            <p>Discover the latest collections and exclusive offers.</p>
+            <a href="shop.php" class="btn">Shop Now</a>
+        </div>
+    </section>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <header class="hero-section">
-                <h2>Welcome, <?php echo isset($username) ? $username : 'User'; ?>!</h2>
-                <p>Check Out Our Latest Ads and Offers</p>
-            </header>
-
-            <!-- Advertising Section -->
-            <section class="advertising-section">
-                <?php if (!empty($ads) && is_array($ads)): ?>
-                    <div class="ad-grid">
-                        <?php foreach ($ads as $ad): ?>
-                            <div class="ad-card <?php echo isset($ad['animation_type']) ? $ad['animation_type'] : ''; ?>" style="border: none; padding: 20px;">
-                                <a href="<?= isset($ad['link']) ? $ad['link'] : '#'; ?>" target="_blank">
-                                    <img src="<?= isset($ad['image_url']) ? $ad['image_url'] : '#'; ?>" alt="<?= isset($ad['title']) ? htmlspecialchars($ad['title']) : 'Ad'; ?>" style="border: none;">
-                                </a>
-                                <h3><?= isset($ad['title']) ? htmlspecialchars($ad['title']) : 'No Title'; ?></h3>
-                                <p class="ad-description"><?= isset($ad['description']) ? htmlspecialchars($ad['description']) : 'No Description'; ?></p>
-                                <a href="<?= isset($ad['link']) ? $ad['link'] : '#'; ?>" class="ad-link">Learn More</a>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php else: ?>
-                    <p>No ads available at the moment.</p>
-                <?php endif; ?>
-            </section>
+    <!-- Featured Section -->
+    <section class="featured-section">
+    <h2>Featured Collections</h2>
+    <div class="featured-carousel">
+        <div class="featured-card">
+            <img src="https://images.mattel.net/images/w_540,c_scale,f_auto/shop-us-prod/files/ac6e23da0a29fe2f4401d89e662510b75ad5a5a3/hot-wheels-racerverse-ender-dragons-last-lap-track-set-jfp34-hover.jpg" alt="Minecraft Adventures">
+            <h3>Pixelated Adventures</h3>
+            <p>Thrill action fans with RacerVerse toys inspired by the new Minecraft movie, in theaters this April.</p>
+            <a href="shop.php" class="btn-link">Shop Now</a>
+        </div>
+        <div class="featured-card">
+            <img src="https://images.mattel.net/image/upload/w_540,f_auto,c_scale/shop-contentstack/blt7ff6e7ccfbc372d3/678157779ca4c0e88f8142e3/HW_LP_MT-Big-Foot_50th_CardSplit_1694x1505.jpg" alt="Bigfoot Turns 50">
+            <h3>Bigfoot Turns 50</h3>
+            <p>Fans can celebrate the world’s most famous Monster Truck with our epic anniversary toys.</p>
+            <a href="shop.php" class="btn-link">Shop Now</a>
+        </div>
+        <div class="featured-card">
+            <img src="https://images.mattel.net/image/upload/w_540,f_auto,c_scale/shop-contentstack/blt794f21430ea265e3/6810f364733c4a31b8329fe5/MBKS_HomePage_Card_1694x1505-Custom_(1).jpg" alt="Mattel Brick Shop">
+            <h3>Mattel Brick Shop</h3>
+            <p>Featuring metal parts and customization, these iconic cars are yours to build.</p>
+            <a href="shop.php" class="btn-link">Shop Now</a>
+        </div>
+        <div class="featured-card">
+            <img src="https://images.mattel.net/image/upload/w_646,f_auto,c_scale/shop-us-prod/files/i66xirdyioz117d7y95h_0ba02582-cae4-4aea-81f5-55823bd2eaeb.jpg" alt="Hot Wheels Monster Trucks">
+            <h3>Monster Truck Madness</h3>
+            <p>Hot Wheels Racerverse, Set Of 4 Die-Cast Hot Wheels Cars With Pop Culture Characters As Drivers.</p>
+            <a href="shop.php" class="btn-link">Shop Now</a>
+        </div>
+        <div class="featured-card">
+            <img src="https://images.mattel.net/image/upload/w_646,f_auto,q_60,c_pad/shop-us-prod/products/yixrqlajfvzdrxjwkyoz_ed38ac64-c49a-4587-9fae-83d5645d1489.png" alt="Hot Wheels Track Builder">
+            <h3>Track Builder Unlimited</h3>
+            <p>Hot Wheels Racerverse, Set Of 4 Die-Cast Hot Wheels Cars With Jurassic World Characters As Drivers.</p>
+            <a href="shop.php" class="btn-link">Shop Now</a>
+        </div>
+        <div class="featured-card">
+            <img src="https://images.mattel.net/image/upload/w_540,f_auto,c_scale/shop-contentstack/blt7ff6e7ccfbc372d3/678157779ca4c0e88f8142e3/HW_LP_MT-Big-Foot_50th_CardSplit_1694x1505.jpg" alt="Hot Wheels Legends">
+            <h3>Hot Wheels Legends</h3>
+            <p>Discover the legendary cars that have defined generations of Hot Wheels fans.</p>
+            <a href="shop.php" class="btn-link">Shop Now</a>
         </div>
     </div>
+</section>
+    
+    
 
-    <script>
-        // Optional: Additional JavaScript for ad interaction (e.g., hover effects)
-    </script>
-
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Hot Wheels. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
 </body>
 </html>

@@ -9,7 +9,7 @@ if (file_exists(__DIR__ . '/.env')) {
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');  // Default to localhost if not set
 define('DB_USER', getenv('DB_USER') ?: 'root');       // Default to 'root' if not set
 define('DB_PASS', getenv('DB_PASS') ?: '');           // Default to empty string if not set
-define('DB_NAME', getenv('DB_NAME') ?: 'codes');      // Default to 'codes' if not set
+define('DB_NAME', getenv('DB_NAME') ?: 'GALORPOT');      // Default to 'codes' if not set
 
 // Database connection using PDO
 try {

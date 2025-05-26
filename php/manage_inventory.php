@@ -1,3 +1,4 @@
+<!-- filepath: f:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\php\manage_inventory.php -->
 <?php
 session_start();
 require_once '../php/connect.php'; // Ensure your connect.php file is included for database connection
@@ -43,9 +44,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <header>
         <!-- Back button aligned to the left -->
-        <a href="../php/admin_dashboard.php">
-            <button class="back-button">Back to Admin Dashboard</button>
-        </a>
+        <a href="../php/admin_dashboard.php" class="back-button">Back to Admin Dashboard</a>
+        
         <div class="manage-title">
             <h1>Manage Inventory</h1>
         </div>

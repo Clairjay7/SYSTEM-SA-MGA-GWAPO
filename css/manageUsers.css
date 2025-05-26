@@ -7,69 +7,86 @@
 
 /* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #000428, #004e92); /* Dark blue gradient */
+    color: #fff;
     padding: 20px;
 }
 
 /* Header Styling */
 header {
     display: flex;
-    justify-content: flex-start; /* Align the back button to the left */
+    justify-content: space-between; /* Align back button and title */
     align-items: center;
     margin-bottom: 30px;
 }
 
 header h1 {
     font-size: 36px;
-    color: #333;
-    margin-left: 0; /* Remove left margin */
-    margin-right: 0; /* Ensure it doesn't push to the right */
-    text-align: center; /* Center the text */
+    color: #ff4500; /* Hot Wheels orange */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    flex-grow: 1; /* Center the title */
+}
+
+/* Back to Dashboard Button */
+.back-link {
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-link:hover {
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
 }
 
 /* Centering the Manage Users Section */
 .center-title {
     text-align: center;
     margin: 20px 0;
-}
-
-/* Back Button Styling */
-.back-link {
-    color: #007bff;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.back-link:hover {
-    text-decoration: underline;
+    font-size: 24px;
+    color: #ff4500;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Table Styling */
 table {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     border-collapse: collapse;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff, #f3f3f3);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 
 th, td {
-    padding: 12px;
+    padding: 15px;
     text-align: center;
     border: 1px solid #ddd;
 }
 
 th {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
     color: white;
     font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 td {
     font-size: 16px;
+    color: #333;
 }
 
 tr:nth-child(even) {
@@ -77,15 +94,39 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background-color: #ddd;
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    color: white;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Links in the table */
 a {
-    color: #007bff;
+    color: #ff4500;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 a:hover {
+    color: #ff6f00;
+    transform: scale(1.1);
     text-decoration: underline;
+}
+
+/* Button Styling */
+button {
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }

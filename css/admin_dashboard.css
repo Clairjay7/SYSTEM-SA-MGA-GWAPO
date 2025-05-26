@@ -7,89 +7,144 @@
 
 /* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    flex-direction: column;
+    margin: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('https://i.ytimg.com/vi/zEr-mm8OSGo/maxresdefault.jpg'); /* Add your image */
+    background-size: cover; /* Ensure the image covers the entire page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    background: rgba(255, 255, 255, 0.1); /* Transparent white background */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 900px;
+    width: 90%;
+    border: 3px solid #ff4500; /* Hot Wheels-inspired border */
+    color: white; /* Ensure text is readable */
 }
 
 /* Header Styling */
 header {
     position: absolute;
-    top: 10px; /* Tinaasan pa ng konti */
+    top: 20px;
     width: 100%;
-    display: flex;
-    justify-content: center;  /* Center ang title */
-    align-items: center;
-    position: relative;
-    padding: 10px 0;
+    text-align: center;
 }
 
-/* Admin Dashboard Title */
 header h1 {
-    font-size: 36px;
-    color: #333;
+    font-size: 42px;
+    color: #ff4500; /* Hot Wheels orange */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
 }
 
-/* Logout Button - Pinaka-taas na Right Corner */
+/* Logout Button */
 .logout {
     position: absolute;
-    left: 150;
-    right: 20px;  /* Mas dikit sa gilid */
-    top: -150px;  /* Pinaka-taas */
-    background-color: #f44336;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
     color: white;
-    padding: 10px 15px;
+    padding: 12px 25px;
     font-size: 16px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 .logout:hover {
-    background-color: #d32f2f;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+    transform: scale(1.1);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
 }
 
-/* Dashboard Container */
-.dashboard-container {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
+/* Action Cards */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-/* Card Heading */
-.card h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #4CAF50;
-}
-
-/* Button Styling */
-button {
-    background-color: #4CAF50;
+.action-card {
+    background: linear-gradient(135deg, #ff4500, #ff6f00);
     color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+    text-decoration: none;
+    border-radius: 15px;
+    padding: 25px;
+    width: 220px;
     text-align: center;
-    margin: 10px 0;
-    width: 100%;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.6s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #ff8c00;
 }
 
-button:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
+.action-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    z-index: 0;
+}
+
+.action-card:hover::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.action-card:hover {
+    transform: scale(1.15);
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(135deg, #ff6f00, #ff8c00);
+}
+
+/* Action Content */
+.action-content {
+    position: relative;
+    z-index: 1;
+}
+
+.action-content h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.action-content p {
+    font-size: 15px;
+    color: #f0f0f0;
+    line-height: 1.6;
+}
+
+/* Add subtle hover glow effect */
+.action-card:hover .action-content h3 {
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
+}
+
+.action-card:hover .action-content p {
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
 }

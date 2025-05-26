@@ -1,62 +1,129 @@
-/* Center the checkout container */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: "Poppins", sans-serif;
+    color: #333;
+    background: #f4f4f4;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #ff4500;
+    color: #fff;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #ff6f00;
+}
+
+/* Checkout Container */
 .checkout-container {
-    max-width: 600px;
-    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+}
+
+.checkout-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
     padding: 20px;
-    background: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-/* Resize and center the product image */
 .product-summary img {
-    width: 180px;
-    height: auto;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
     margin-bottom: 15px;
-    border-radius: 8px;
 }
 
-/* Form field styling */
-.form-group {
+.product-summary h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-summary .product-price {
+    font-size: 20px;
+    color: #ff4500;
+    font-weight: bold;
     margin-bottom: 20px;
+}
+
+/* Form Styling */
+.checkout-form .form-group {
+    margin-bottom: 15px;
     text-align: left;
 }
 
-/* Form input and select */
+.checkout-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
 .checkout-form input,
 .checkout-form select {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
-    border-radius: 6px;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
-/* Submit button */
-.btn-submit {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 25px;
+.checkout-form button {
+    background: #ff4500;
+    color: #fff;
+    padding: 10px 20px;
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 14px;
+    transition: background 0.3s ease;
 }
 
-.btn-submit:hover {
-    background-color: #0056b3;
+.checkout-form button:hover {
+    background: #ff6f00;
 }
 
 /* Back to Shop Button */
-.back-home-container {
-    margin-top: 20px;
-}
-
 .btn-back-home {
     display: inline-block;
-    color: #007bff;
+    margin-top: 20px;
     text-decoration: none;
+    color: #ff4500;
     font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.btn-back-home:hover {
+    color: #ff6f00;
 }

@@ -1,3 +1,4 @@
+<!-- filepath: f:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\php\manage_orders.php -->
 <?php
 session_start();
 
@@ -11,7 +12,7 @@ if (!isset($_SESSION['admin_id'])) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "CODES";
+$dbname = "GALORPOT";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -48,12 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id'], $_POST['st
     <header>
         <h1>Manage Orders</h1>
         <form action="../php/logout.php" method="POST" class="logout-form">
-    <button type="submit" class="logout-button">Logout</button>
-</form>
-
+            <button type="submit" class="logout">Logout</button>
+        </form>
     </header>
 
     <div class="orders-container">
+        <!-- Back to Admin Dashboard Button -->
+        <a href="admin_dashboard.php" class="back-button">Back to Admin Dashboard</a>
+
         <h2>Order List</h2>
         <table>
             <thead>
@@ -90,15 +93,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id'], $_POST['st
                                         echo 'Unknown Payment Method';
                                     }
                         echo "</td>
-                                <td>" . $row["status"] . "</td>
                                 <td>
-                                    <form method='POST'>
+                                    <span class='status-label " . strtolower($row["status"]) . "'>" . $row["status"] . "</span>
+                                </td>
+                                <td>
+                                    <form method='POST' class='action-form'>
                                         <input type='hidden' name='order_id' value='" . $row["id"] . "'>
-                                        <select name='status'>
+                                        <select name='status' class='status-dropdown'>
                                             <option value='Pending' " . ($row["status"] == 'Pending' ? 'selected' : '') . ">Pending</option>
                                             <option value='Completed' " . ($row["status"] == 'Completed' ? 'selected' : '') . ">Completed</option>
                                         </select>
-                                        <button type='submit'>Update Status</button>
+                                        <button type='submit' class='pending-button'>Update</button>
                                     </form>
                                 </td>
                             </tr>";

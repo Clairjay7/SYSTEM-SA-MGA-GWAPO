@@ -51,12 +51,9 @@ $products = [
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <h1>Hapart 4 Speed</h1>
+        <h1>Hot Wheels Store</h1>
         <ul>
             <li><a href="../php/homepage.php">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="shop.php">Shop</a></li>
             <?php if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])): ?>
                 <li><a href="logout.php">Logout</a></li>
             <?php endif; ?>
@@ -67,24 +64,24 @@ $products = [
         <h2>Shop Our Hot Wheels Collection</h2>
 
         <!-- Product List -->
-        <div class="product-list">
-            <?php foreach ($products as $product): ?>
-                <div class="product-card">
-                    <img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="product-image">
-                    <h3><?= htmlspecialchars($product['name']); ?></h3>
-                    <p class="product-price">$<?= number_format($product['price'], 2); ?></p>
-                    <a href="product_details.php?id=<?= $product['id']; ?>" class="btn">View Details</a>
-                    <form action="checkout.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
-                        <button type="submit" class="btn">Buy</button>
-                    </form>
-
-                    
-                    
-
-                </div>
-            <?php endforeach; ?>
+         <!-- filepath: f:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\php\shop.php -->
+<div class="product-list">
+    <?php foreach ($products as $product): ?>
+        <div class="product-card">
+            <img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="product-image">
+            <h3><?= htmlspecialchars($product['name']); ?></h3>
+            <p class="product-price">$<?= number_format($product['price'], 2); ?></p>
+            <div class="btn-container">
+                <a href="product_details.php?id=<?= $product['id']; ?>" class="btn">View Details</a>
+                <form action="checkout.php" method="POST" style="display:inline;">
+                    <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                    <button type="submit" class="btn">Buy</button>
+                </form>
+            </div>
         </div>
+    <?php endforeach; ?>
+</div>
+        
     </div>
 
 </body>

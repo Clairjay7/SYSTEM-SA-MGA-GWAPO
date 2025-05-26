@@ -3,8 +3,7 @@ session_start();
 
 // Hardcoded admin credentials (for testing purposes)
 $admin_username = "Admin";
-$admin_username = "AdminG";
-$admin_username = "AdminGalorpot";
+
 $admin_password_hash = password_hash("123", PASSWORD_DEFAULT); // Hashed version of "123"
 
 // Check if form is submitted

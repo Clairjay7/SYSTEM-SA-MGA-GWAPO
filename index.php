@@ -1,7 +1,8 @@
+<!-- filepath: f:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php -->
 <?php
 session_start(); // Start the session at the very beginning
 
-include('php/connect.php'); // Make sure your updated database connection file is correctly included
+include('php/connect.php'); // Ensure the database connection file is included
 
 // Check if the user is already logged in (either as admin or as a guest)
 if (isset($_SESSION['user_id']) || isset($_SESSION['guest'])) {
@@ -42,7 +43,7 @@ if (isset($_GET['guest'])) {
 
             <!-- Show error message if login fails -->
             <?php if (isset($_SESSION['error_message'])): ?>
-                <div class="error-message" style="color: red; margin-bottom: 10px;">
+                <div class="error-message">
                     <?php 
                         echo $_SESSION['error_message']; 
                         unset($_SESSION['error_message']); // Clear the error after showing it
@@ -65,11 +66,11 @@ if (isset($_GET['guest'])) {
             </form>
         </div>
 
-        <!-- Or Section for Continue as Guest -->
+        <!-- Or Section -->
         <div class="or">Or</div>
         
-        <!-- Continue as Guest Link Styled as Button -->
-        <a href="index.php?guest=true" class="guest-link">Continue if not Admin</a>
+        <!-- Continue as Guest -->
+        <a href="index.php?guest=true" class="guest-link">Continue as Guest</a>
     </div>
 </body>
 </html>

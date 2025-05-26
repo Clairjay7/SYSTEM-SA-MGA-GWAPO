@@ -1,85 +1,124 @@
-/* Reset some basic styles */
-body, h2, form, input, textarea {
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    box-sizing: border-box;
 }
 
-/* Body styles */
+/* Body Styling */
 body {
-    background-color: #f4f4f4;
+    font-family: "Poppins", sans-serif;
     color: #333;
+    background: #f4f4f4;
     padding: 20px;
 }
 
-/* Heading styles */
+/* Heading Styles */
 h2 {
     text-align: center;
     font-size: 2rem;
-    color: #2c3e50;
+    color: #ff4500;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Form container */
+/* Form Container */
 form {
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Label styles */
+form:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Label Styles */
 label {
     display: block;
     font-size: 1rem;
     margin-bottom: 8px;
-    color: #2c3e50;
+    color: #333;
+    font-weight: bold;
 }
 
-/* Input field and textarea styles */
+/* Input Field Styles */
 input[type="text"],
 input[type="number"],
 textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 12px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Textarea specific */
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    border-color: #ff4500;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+}
+
+/* Textarea Specific */
 textarea {
     height: 120px;
     resize: vertical;
 }
 
-/* Button styles */
+/* Button Styles */
 button {
-    background-color: #3498db;
+    background-color: #ff4500;
     color: #fff;
     padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
     width: 100%;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #ff6f00;
+    transform: scale(1.05);
 }
 
-/* Responsive design */
+/* Back Button */
+.btn-back {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #ff4500;
+    font-size: 14px;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-back:hover {
+    color: #ff6f00;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     body {
         padding: 10px;
     }
 
     form {
-        padding: 15px;
+        padding: 20px;
     }
 
     h2 {
@@ -91,4 +130,3 @@ button:hover {
         padding: 10px 18px;
     }
 }
-
