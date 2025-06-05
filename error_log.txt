@@ -43,3 +43,4 @@ Stack trace:
 #0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php(41): PDOStatement->execute(Array)
 #1 {main}
   thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\index.php on line 41
+[28-May-2025 20:06:19 Europe/Berlin] Database Connection Error: SQLSTATE[HY000] [1049] Unknown database 'galorpot'

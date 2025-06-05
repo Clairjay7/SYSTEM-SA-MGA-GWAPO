@@ -52,7 +52,7 @@ $guests = get_data_from_api('guest_sessions.php'); // Removed ../api
                         <td><?= $user['created_at']; ?></td>
                         <td>Admin</td>
                         <td>
-                            <a href="../php/updateUser.php?id=<?= $user['id']; ?>">Edit</a>
+                            <a href="../php/edit_user.php?id=<?= $user['id']; ?>">Edit</a>
                             <a href="#" onclick="deleteUser(<?= $user['id']; ?>)">Delete</a>
                         </td>
                     </tr>

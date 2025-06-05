@@ -25,11 +25,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $_POST['description'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
-    $category = $_POST['category'];
+    $barcode = $_POST['barcode'];
 
     try {
-        $stmt = $pdo->prepare("UPDATE inventory SET name = ?, description = ?, price = ?, quantity = ?, category = ? WHERE id = ?");
-        $stmt->execute([$name, $description, $price, $quantity, $category, $product_id]);
+        // Check if barcode already exists for another product
+        if (!empty($barcode)) {
+            $check = $pdo->prepare("SELECT id FROM inventory WHERE barcode = ? AND id != ?");
+            $check->execute([$barcode, $product_id]);
+            if ($check->rowCount() > 0) {
+                throw new PDOException("This barcode is already in use by another product.");
+            }
+        }
+
+        // Update inventory table
+        $stmt = $pdo->prepare("UPDATE inventory SET name = ?, description = ?, price = ?, quantity = ?, barcode = ? WHERE id = ?");
+        $stmt->execute([$name, $description, $price, $quantity, $barcode ?: null, $product_id]);
         $success = "Product updated successfully!";
     } catch(PDOException $e) {
         $error = "Error updating product: " . $e->getMessage();
@@ -116,6 +126,17 @@ try {
                                 <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($product['name']); ?>" required>
                             </div>
                             <div class="mb-3">
+                                <label for="barcode" class="form-label">
+                                    <i class="fas fa-barcode"></i> Barcode
+                                </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="barcode" name="barcode" value="<?php echo htmlspecialchars($product['barcode'] ?? ''); ?>" maxlength="13">
+                                    <button type="button" class="btn btn-secondary" onclick="generateBarcode()">
+                                        <i class="fas fa-random"></i> Generate
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
                                 <textarea class="form-control" id="description" name="description" rows="3"><?php echo htmlspecialchars($product['description']); ?></textarea>
                             </div>
@@ -126,10 +147,6 @@ try {
                             <div class="mb-3">
                                 <label for="quantity" class="form-label">Quantity</label>
                                 <input type="number" class="form-control" id="quantity" name="quantity" value="<?php echo htmlspecialchars($product['quantity']); ?>" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="category" class="form-label">Category</label>
-                                <input type="text" class="form-control" id="category" name="category" value="<?php echo htmlspecialchars($product['category']); ?>">
                             </div>
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary">Update Product</button>
@@ -143,5 +160,17 @@ try {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        // Barcode generator function
+        function generateBarcode() {
+            // Generate a random 13-digit number (EAN-13 format)
+            let barcode = '';
+            for(let i = 0; i < 13; i++) {
+                barcode += Math.floor(Math.random() * 10);
+            }
+            document.getElementById('barcode').value = barcode;
+        }
+    </script>
 </body>
 </html> 

@@ -1,9 +1,35 @@
 RewriteEngine On
-RewriteBase /SYSTEM-SA-MGA-GWAPO/api/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ Router.php [QSA,L]
 
-RewriteRule ^ index.php [L]
-
-# Set CORS headers
+# Handle CORS
 Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-Header set Access-Control-Allow-Headers "Authorization, Content-Type" 
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+Header set Access-Control-Max-Age "3600"
+
+# Handle OPTIONS method for CORS preflight
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# Force JSON content type for API responses
+Header set Content-Type application/json
+
+# Prevent directory listing
+Options -Indexes
+
+# Deny access to .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Deny access to files with extensions .json, .lock, .git
+<FilesMatch "\.(json|lock|git)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Disable server signature
+ServerSignature Off 

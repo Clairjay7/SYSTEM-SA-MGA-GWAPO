@@ -19,21 +19,23 @@ try {
     // Start transaction
     $pdo->beginTransaction();
 
-    // Delete related order items first
-    $stmt = $pdo->prepare("DELETE FROM order_items WHERE product_id = ?");
-    $stmt->execute([$_GET['id']]);
-
-    // Then delete the product
-    $stmt = $pdo->prepare("DELETE FROM inventory WHERE id = ?");
+    // Instead of deleting, mark the product as deleted
+    $stmt = $pdo->prepare("
+        UPDATE inventory 
+        SET deleted_at = CURRENT_TIMESTAMP
+        WHERE id = ?
+    ");
     $stmt->execute([$_GET['id']]);
 
     // Commit transaction
     $pdo->commit();
 
-    $_SESSION['success'] = "Product deleted successfully";
+    $_SESSION['success'] = "Product marked as deleted successfully";
 } catch(PDOException $e) {
     // Rollback transaction on error
-    $pdo->rollBack();
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
     $_SESSION['error'] = "Error deleting product: " . $e->getMessage();
 }
 

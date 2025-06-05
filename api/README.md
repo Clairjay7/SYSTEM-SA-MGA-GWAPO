@@ -1,196 +1,225 @@
-# Hot Wheels Store API Documentation
+# API Documentation
 
 ## Base URL
 ```
-http://your-domain.com/api/v1
+http://localhost/SYSTEM-SA-MGA-GWAPO/api
 ```
 
 ## Authentication
-All API requests require authentication using JWT (JSON Web Token). Include the token in the Authorization header:
+The API uses token-based authentication. To access protected endpoints, include the token in the Authorization header:
 ```
-Authorization: Bearer <your_jwt_token>
+Authorization: Bearer your_token_here
 ```
 
-## Error Responses
-All endpoints may return these error responses:
-```json
+### Authentication Endpoints
+
+#### Login
+```
+POST /auth/login
+Content-Type: application/json
+
+Request Body:
 {
-    "status": "error",
-    "code": 401,
-    "message": "Unauthorized access"
+    "username": "admin",
+    "password": "password"
 }
-```
-```json
-{
-    "status": "error",
-    "code": 403,
-    "message": "Forbidden - Insufficient permissions"
-}
-```
-```json
-{
-    "status": "error",
-    "code": 404,
-    "message": "Resource not found"
-}
-```
-```json
-{
-    "status": "error",
-    "code": 500,
-    "message": "Internal server error"
-}
-```
 
-## Endpoints
-
-### Authentication
-
-#### POST /auth/login
-Login to get access token.
-
-**Request:**
-```json
-{
-    "username": "string",
-    "password": "string"
-}
-```
-
-**Response:**
-```json
+Response:
 {
     "status": "success",
     "data": {
-        "token": "jwt_token_here",
+        "token": "your_jwt_token",
         "user": {
             "id": 1,
-            "username": "string",
-            "role": "admin|user"
+            "username": "admin",
+            "role": "admin"
         }
     }
 }
 ```
 
-### Users
+#### Guest Access
+```
+POST /auth/guest
+Content-Type: application/json
 
-#### GET /users
-Get all users (Admin only)
-
-**Response:**
-```json
+Response:
 {
     "status": "success",
     "data": {
-        "users": [
-            {
-                "id": 1,
-                "username": "string",
-                "email": "string",
-                "role": "string",
-                "created_at": "timestamp"
-            }
-        ]
+        "token": "guest_jwt_token",
+        "user": {
+            "id": "guest_id",
+            "role": "guest"
+        }
     }
 }
 ```
 
-#### POST /users
-Create new user (Admin only)
+### User Endpoints (Protected)
 
-**Request:**
-```json
+#### Get All Users
+```
+GET /users
+Authorization: Bearer token
+```
+
+#### Get User by ID
+```
+GET /users/{id}
+Authorization: Bearer token
+```
+
+#### Update User
+```
+PUT /users/{id}
+Authorization: Bearer token
+Content-Type: application/json
+
+Request Body:
 {
-    "username": "string",
-    "email": "string",
-    "password": "string",
-    "role": "admin|user"
+    "username": "newusername",
+    "email": "newemail@example.com"
 }
 ```
 
-### Products
+#### Delete User
+```
+DELETE /users/{id}
+Authorization: Bearer token
+```
 
-#### GET /products
-Get all products
+### Product Endpoints
 
-**Response:**
-```json
+#### Get All Products
+```
+GET /products
+```
+
+#### Get Product by ID
+```
+GET /products/{id}
+```
+
+#### Create Product (Protected)
+```
+POST /products
+Authorization: Bearer token
+Content-Type: application/json
+
+Request Body:
 {
-    "status": "success",
-    "data": {
-        "products": [
-            {
-                "id": 1,
-                "name": "string",
-                "price": "number",
-                "image_url": "string",
-                "stock": "number"
-            }
-        ]
-    }
+    "name": "Product Name",
+    "description": "Product Description",
+    "price": 99.99
 }
 ```
 
-#### POST /products
-Add new product (Admin only)
+#### Update Product (Protected)
+```
+PUT /products/{id}
+Authorization: Bearer token
+Content-Type: application/json
 
-**Request:**
-```json
+Request Body:
 {
-    "name": "string",
-    "price": "number",
-    "image_url": "string",
-    "stock": "number"
+    "name": "Updated Name",
+    "price": 149.99
 }
 ```
 
-### Orders
-
-#### GET /orders
-Get all orders (Admin) or user's orders (User)
-
-**Response:**
-```json
-{
-    "status": "success",
-    "data": {
-        "orders": [
-            {
-                "id": 1,
-                "user_id": "number",
-                "total_amount": "number",
-                "status": "string",
-                "created_at": "timestamp",
-                "items": [
-                    {
-                        "product_id": "number",
-                        "quantity": "number",
-                        "price": "number"
-                    }
-                ]
-            }
-        ]
-    }
-}
+#### Delete Product (Protected)
+```
+DELETE /products/{id}
+Authorization: Bearer token
 ```
 
-#### POST /orders
-Create new order
+### Order Endpoints (Protected)
 
-**Request:**
-```json
+#### Get All Orders
+```
+GET /orders
+Authorization: Bearer token
+```
+
+#### Get Order by ID
+```
+GET /orders/{id}
+Authorization: Bearer token
+```
+
+#### Create Order
+```
+POST /orders
+Authorization: Bearer token
+Content-Type: application/json
+
+Request Body:
 {
-    "items": [
+    "products": [
         {
-            "product_id": "number",
-            "quantity": "number"
+            "product_id": 1,
+            "quantity": 2
         }
     ]
 }
 ```
 
-## Rate Limiting
-API requests are limited to 100 requests per minute per IP address.
+#### Update Order
+```
+PUT /orders/{id}
+Authorization: Bearer token
+Content-Type: application/json
 
-## Versioning
-Current API version: v1 
+Request Body:
+{
+    "status": "completed"
+}
+```
+
+#### Delete Order
+```
+DELETE /orders/{id}
+Authorization: Bearer token
+```
+
+## Response Format
+
+### Success Response
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "Success message",
+    "data": {
+        // Response data here
+    }
+}
+```
+
+### Error Response
+```json
+{
+    "status": "error",
+    "code": 400,
+    "message": "Error message",
+    "errors": {
+        // Detailed error information
+    }
+}
+```
+
+## Error Codes
+- 200: Success
+- 400: Bad Request
+- 401: Unauthorized
+- 403: Forbidden
+- 404: Not Found
+- 500: Internal Server Error
+
+## Testing with Postman
+1. Import the provided Postman collection
+2. Set up environment variables:
+   - `base_url`: http://localhost/SYSTEM-SA-MGA-GWAPO/api
+   - `token`: Your authentication token
+3. Use the collection to test all endpoints 

@@ -32,6 +32,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($product['name']); ?> - HOT4HAPART</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../css/homepage.css">
     <style>
         .product-detail-container {
@@ -80,6 +81,25 @@ try {
             gap: 1rem;
             margin-top: 2rem;
         }
+        .barcode-container {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .barcode-icon {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .barcode-number {
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: #333;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 <body>
@@ -115,6 +135,12 @@ try {
             <img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['name']); ?>" class="product-image">
             <div class="product-info">
                 <h2 class="product-name"><?= htmlspecialchars($product['name']); ?></h2>
+                <?php if (!empty($product['barcode'])): ?>
+                <div class="barcode-container">
+                    <i class="fas fa-barcode barcode-icon"></i>
+                    <span class="barcode-number"><?= htmlspecialchars($product['barcode']); ?></span>
+                </div>
+                <?php endif; ?>
                 <p class="product-description"><?= htmlspecialchars($product['description']); ?></p>
                 <p class="product-price">₱<?= number_format($product['price'], 2); ?></p>
                 <p class="stock-info">In Stock: <?= htmlspecialchars($product['quantity']); ?> units</p>

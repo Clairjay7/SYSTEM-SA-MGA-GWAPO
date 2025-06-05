@@ -181,7 +181,7 @@ if (!$logged_in && !$is_guest) {
                 </div>
                 <div class="col-lg-6">
                     <div class="challenge-image">
-                        <img src="https://sdmntpreastus2.oaiusercontent.com/files/00000000-675c-61f6-99c0-289151dc2877/raw?se=2025-05-26T17%3A45%3A17Z&sp=r&sv=2024-08-04&sr=b&scid=2f7b03e6-33d7-55f5-9502-cf4dd6fd38d2&skoid=31bc9c1a-c7e0-460a-8671-bf4a3c419305&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-26T01%3A14%3A09Z&ske=2025-05-27T01%3A14%3A09Z&sks=b&skv=2024-08-04&sig=BLtGwNiMA%2BwWsph6o6IEDQNsNH7%2B4GDuA6x3U6XufBI%3D" alt="Hot Wheels Track" class="img-fluid">
+                        <img src="../child.png" alt="Hot Wheels Track" class="img-fluid">
                     </div>
                 </div>
             </div>

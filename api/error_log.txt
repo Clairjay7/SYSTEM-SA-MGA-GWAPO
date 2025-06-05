@@ -1,0 +1,179 @@
+[28-May-2025 10:54:37 Asia/Manila] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function BaseController::__construct(), 1 passed in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php on line 40 and exactly 2 expected in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\core\BaseController.php:6
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php(40): BaseController->__construct(Object(PDO))
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\core\BaseController.php on line 6
+[28-May-2025 10:55:12 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to undefined method AuthMiddleware::generateToken() in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\controllers\AuthController.php:69
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php(44): AuthController->continueAsGuest()
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\controllers\AuthController.php on line 69
+[28-May-2025 11:04:07 Asia/Manila] Raw input: 
+[28-May-2025 11:04:07 Asia/Manila] Content-Type: application/json
+[28-May-2025 11:04:07 Asia/Manila] Request Method: POST
+[28-May-2025 11:04:07 Asia/Manila] Request Headers: Array
+(
+    [Content-Type] => application/json
+    [User-Agent] => PostmanRuntime/7.44.0
+    [Accept] => */*
+    [Postman-Token] => d670c374-786e-4ea2-b7a7-85ebd5c0f335
+    [Host] => localhost
+    [Accept-Encoding] => gzip, deflate, br
+    [Connection] => keep-alive
+    [Content-Length] => 0
+)
+
+[28-May-2025 11:04:21 Asia/Manila] Raw input: 
+[28-May-2025 11:04:21 Asia/Manila] Content-Type: application/json
+[28-May-2025 11:04:21 Asia/Manila] Request Method: POST
+[28-May-2025 11:04:21 Asia/Manila] Request Headers: Array
+(
+    [Content-Type] => application/json
+    [User-Agent] => PostmanRuntime/7.44.0
+    [Accept] => */*
+    [Postman-Token] => f63359db-192e-4132-9d67-3a229a6966ac
+    [Host] => localhost
+    [Accept-Encoding] => gzip, deflate, br
+)
+
+[28-May-2025 11:04:29 Asia/Manila] Raw input: 
+[28-May-2025 11:04:29 Asia/Manila] Content-Type: application/json
+[28-May-2025 11:04:29 Asia/Manila] Request Method: POST
+[28-May-2025 11:04:29 Asia/Manila] Request Headers: Array
+(
+    [Content-Type] => application/json
+    [User-Agent] => PostmanRuntime/7.44.0
+    [Accept] => */*
+    [Postman-Token] => a5efbb01-cd63-47b2-ba24-750d4b8a58f3
+    [Host] => localhost
+    [Accept-Encoding] => gzip, deflate, br
+)
+
+[28-May-2025 11:04:37 Asia/Manila] Raw input: 
+[28-May-2025 11:04:37 Asia/Manila] Content-Type: application/json
+[28-May-2025 11:04:37 Asia/Manila] Request Method: POST
+[28-May-2025 11:04:37 Asia/Manila] Request Headers: Array
+(
+    [Content-Type] => application/json
+    [User-Agent] => PostmanRuntime/7.44.0
+    [Accept] => */*
+    [Postman-Token] => 2a01a95a-0f5e-4aed-912e-f6de3d394475
+    [Host] => localhost
+    [Accept-Encoding] => gzip, deflate, br
+)
+
+[28-May-2025 11:07:41 Asia/Manila] PHP Warning:  require_once(F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api/controllers/ProductController.php): Failed to open stream: No such file or directory in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php on line 10
+[28-May-2025 11:07:41 Asia/Manila] PHP Fatal error:  Uncaught Error: Failed opening required 'F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api/controllers/ProductController.php' (include_path='F:\xammp\php\PEAR') in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php:10
+Stack trace:
+#0 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php on line 10
+[28-May-2025 11:08:17 Asia/Manila] PHP Warning:  require_once(F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api/controllers/OrderController.php): Failed to open stream: No such file or directory in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php on line 11
+[28-May-2025 11:08:17 Asia/Manila] PHP Fatal error:  Uncaught Error: Failed opening required 'F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api/controllers/OrderController.php' (include_path='F:\xammp\php\PEAR') in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php:11
+Stack trace:
+#0 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php on line 11
+[28-May-2025 11:08:18 Asia/Manila] PHP Warning:  require_once(F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api/controllers/OrderController.php): Failed to open stream: No such file or directory in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php on line 11
+[28-May-2025 11:08:18 Asia/Manila] PHP Fatal error:  Uncaught Error: Failed opening required 'F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api/controllers/OrderController.php' (include_path='F:\xammp\php\PEAR') in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php:11
+Stack trace:
+#0 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\index.php on line 11
+[28-May-2025 11:09:33 Asia/Manila] Raw input: 
+[28-May-2025 11:09:33 Asia/Manila] Content-Type: application/json
+[28-May-2025 11:09:33 Asia/Manila] Request Method: POST
+[28-May-2025 11:09:33 Asia/Manila] Request Headers: Array
+(
+    [Content-Type] => application/json
+    [User-Agent] => PostmanRuntime/7.44.0
+    [Accept] => */*
+    [Postman-Token] => 3dceae57-0d37-4aae-8f7f-eaf3dcbe075d
+    [Host] => localhost
+    [Accept-Encoding] => gzip, deflate, br
+)
+
+[28-May-2025 11:11:55 Asia/Manila] Raw input: 
+[28-May-2025 11:11:55 Asia/Manila] Content-Type: application/json
+[28-May-2025 11:11:55 Asia/Manila] Request Method: POST
+[28-May-2025 11:11:55 Asia/Manila] Request Headers: Array
+(
+    [Content-Type] => application/json
+    [User-Agent] => PostmanRuntime/7.44.0
+    [Accept] => */*
+    [Postman-Token] => 3c83d498-05b8-4ef1-b132-21f02335d820
+    [Host] => localhost
+    [Accept-Encoding] => gzip, deflate, br
+)
+
+[28-May-2025 11:13:15 Asia/Manila] Raw input: 
+[28-May-2025 11:13:15 Asia/Manila] Content-Type: application/json
+[28-May-2025 11:13:15 Asia/Manila] Request Method: POST
+[28-May-2025 11:13:15 Asia/Manila] Request Headers: Array
+(
+    [Content-Type] => application/json
+    [User-Agent] => PostmanRuntime/7.44.0
+    [Accept] => */*
+    [Postman-Token] => 46070e64-bfc0-4c5d-bf83-8e40a2f55d57
+    [Host] => localhost
+    [Accept-Encoding] => gzip, deflate, br
+)
+
+[28-May-2025 11:13:29 Asia/Manila] Raw input: 
+[28-May-2025 11:13:29 Asia/Manila] Content-Type: application/json
+[28-May-2025 11:13:29 Asia/Manila] Request Method: POST
+[28-May-2025 11:13:29 Asia/Manila] Request Headers: Array
+(
+    [Content-Type] => application/json
+    [User-Agent] => PostmanRuntime/7.44.0
+    [Accept] => */*
+    [Postman-Token] => d29fd3c5-0e7e-4d48-8925-8cdcd5a887e6
+    [Host] => localhost
+    [Accept-Encoding] => gzip, deflate, br
+)
+
+[28-May-2025 11:35:13 Asia/Manila] Request Method: GET
+[28-May-2025 11:35:13 Asia/Manila] Request URI: /SYSTEM-SA-MGA-GWAPO/api/
+[28-May-2025 11:35:13 Asia/Manila] Base Path: /SYSTEM-SA-MGA-GWAPO/api
+[28-May-2025 11:35:13 Asia/Manila] Processed URI: /
+[28-May-2025 11:35:13 Asia/Manila] Available routes:
+[28-May-2025 11:35:13 Asia/Manila] POST /auth/login
+[28-May-2025 11:35:13 Asia/Manila] POST /auth/guest
+[28-May-2025 11:35:13 Asia/Manila] GET /users
+[28-May-2025 11:35:13 Asia/Manila] GET /users/{id}
+[28-May-2025 11:35:13 Asia/Manila] PUT /users/{id}
+[28-May-2025 11:35:13 Asia/Manila] DELETE /users/{id}
+[28-May-2025 11:35:13 Asia/Manila] GET /products
+[28-May-2025 11:35:13 Asia/Manila] GET /products/{id}
+[28-May-2025 11:35:13 Asia/Manila] POST /products
+[28-May-2025 11:35:13 Asia/Manila] PUT /products/{id}
+[28-May-2025 11:35:13 Asia/Manila] DELETE /products/{id}
+[28-May-2025 11:35:13 Asia/Manila] GET /orders
+[28-May-2025 11:35:13 Asia/Manila] GET /orders/{id}
+[28-May-2025 11:35:13 Asia/Manila] POST /orders
+[28-May-2025 11:35:13 Asia/Manila] PUT /orders/{id}
+[28-May-2025 11:35:13 Asia/Manila] DELETE /orders/{id}
+[28-May-2025 11:35:13 Asia/Manila] Checking route: POST /auth/login against pattern: #^/auth/login$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: POST /auth/guest against pattern: #^/auth/guest$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: GET /users against pattern: #^/users$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: GET /users/{id} against pattern: #^/users/([^/]+)$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: PUT /users/{id} against pattern: #^/users/([^/]+)$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: DELETE /users/{id} against pattern: #^/users/([^/]+)$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: GET /products against pattern: #^/products$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: GET /products/{id} against pattern: #^/products/([^/]+)$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: POST /products against pattern: #^/products$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: PUT /products/{id} against pattern: #^/products/([^/]+)$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: DELETE /products/{id} against pattern: #^/products/([^/]+)$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: GET /orders against pattern: #^/orders$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: GET /orders/{id} against pattern: #^/orders/([^/]+)$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: POST /orders against pattern: #^/orders$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: PUT /orders/{id} against pattern: #^/orders/([^/]+)$#
+[28-May-2025 11:35:13 Asia/Manila] Checking route: DELETE /orders/{id} against pattern: #^/orders/([^/]+)$#
+[28-May-2025 11:35:13 Asia/Manila] No matching route found for: GET /
+[28-May-2025 10:18:24 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\inventory_api.php:131
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\inventory_api.php(131): http_response_code('42S22')
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\inventory_api.php on line 131
+[28-May-2025 10:19:39 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\inventory_api.php:131
+Stack trace:
+#0 F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\inventory_api.php(131): http_response_code('42S22')
+#1 {main}
+  thrown in F:\xammp\htdocs\SYSTEM-SA-MGA-GWAPO\api\inventory_api.php on line 131

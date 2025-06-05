@@ -1,4 +1,8 @@
 <?php
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $host = 'localhost';
 $dbname = 'GALORPOT';
 $username = 'root';
@@ -10,6 +14,10 @@ try {
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch(PDOException $e) {
     error_log("Database Connection Error: " . $e->getMessage());
-    die("Connection failed: Please try again later.");
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Database connection failed: ' . $e->getMessage()
+    ]);
+    exit;
 }
 ?> 

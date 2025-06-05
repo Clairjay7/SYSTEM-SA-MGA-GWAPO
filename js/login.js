@@ -1,27 +1,33 @@
 // Function to show error messages using SweetAlert2
 function showError(message) {
     Swal.fire({
-        title: 'Error!',
+        title: 'Error',
         text: message,
         icon: 'error',
-        confirmButtonText: 'Try Again',
+        confirmButtonText: 'OK',
         background: '#0a1929',
         color: 'white',
         customClass: {
             popup: 'swal-error-popup'
+        },
+        didClose: () => {
+            // Keep the modal open after error message is closed
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
         }
     });
 }
 
 // Form validation function
 function validateForm() {
-    const username = document.getElementById('username').value;
+    const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value;
 
     if (!username || !password) {
-        showError('Please fill in all fields');
+        showError('Please enter both username and password');
         return false;
     }
+
     return true;
 }
 

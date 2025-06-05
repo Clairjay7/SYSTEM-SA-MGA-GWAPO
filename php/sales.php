@@ -94,6 +94,9 @@ try {
                         <a class="nav-link" href="homepage.php">View Site</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="manage_users.php">Manage Users</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="manage_products.php">Manage Products</a>
                     </li>
                     <li class="nav-item">
@@ -185,10 +188,10 @@ try {
                             <tr>
                                 <td><?php echo date('M d, Y h:i A', strtotime($sale['sale_date'])); ?></td>
                                 <td>#<?php echo htmlspecialchars($sale['order_id']); ?></td>
-                                <td><?php echo htmlspecialchars($sale['product_name']); ?></td>
-                                <td><?php echo htmlspecialchars($sale['customer_name']); ?></td>
+                                <td><?php echo htmlspecialchars($sale['product_name'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($sale['customer_name'] ?? 'Guest User'); ?></td>
                                 <td><?php echo htmlspecialchars($sale['quantity']); ?></td>
-                                <td><?php echo htmlspecialchars($sale['payment_method']); ?></td>
+                                <td><?php echo htmlspecialchars($sale['payment_method'] ?? 'N/A'); ?></td>
                                 <td class="text-end">₱<?php echo number_format($sale['amount'], 2); ?></td>
                             </tr>
                         <?php endforeach; ?>

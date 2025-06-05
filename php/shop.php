@@ -2,12 +2,18 @@
 session_start();
 require_once '../config/database.php';
 
-// Get sort and search parameters
+// Get sort, search, and category parameters
 $sort = $_GET['sort'] ?? 'newest';
 $search = $_GET['search'] ?? '';
+$category = $_GET['category'] ?? 'all';
 
-// Build the SQL query based on sort and search
-$sql = "SELECT * FROM inventory WHERE quantity > 0";
+// Build the SQL query based on sort, search, and category
+$sql = "SELECT * FROM inventory WHERE quantity > 0 AND deleted_at IS NULL";
+
+// Add category filter
+if ($category !== 'all') {
+    $sql .= " AND category = :category";
+}
 
 // Add search condition if search term is provided
 if (!empty($search)) {
@@ -33,12 +39,24 @@ switch ($sort) {
 // Get all products from database
 try {
     $stmt = $pdo->prepare($sql);
+    if ($category !== 'all') {
+        $stmt->bindParam(':category', $category);
+    }
     if (!empty($search)) {
         $searchTerm = "%{$search}%";
         $stmt->bindParam(':search', $searchTerm);
     }
     $stmt->execute();
     $products = $stmt->fetchAll();
+
+    // Get category counts
+    $categoryCountsStmt = $pdo->query("
+        SELECT category, COUNT(*) as count 
+        FROM inventory 
+        WHERE quantity > 0 AND deleted_at IS NULL 
+        GROUP BY category
+    ");
+    $categoryCounts = $categoryCountsStmt->fetchAll(PDO::FETCH_KEY_PAIR);
 } catch(PDOException $e) {
     $error = "Error fetching products: " . $e->getMessage();
 }
@@ -116,6 +134,80 @@ if (!$logged_in && !$is_guest) {
             border-radius: 10px;
             margin: 20px 0;
         }
+        
+        .category-buttons {
+            margin-bottom: 20px;
+        }
+        
+        .category-btn {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn.active {
+            background-color: #e31837;
+            color: white;
+            border-color: #e31837;
+        }
+        
+        .category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .category-count {
+            font-size: 0.8em;
+            margin-left: 5px;
+            opacity: 0.7;
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 0.35em 0.65em;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+        
+        .category-Regular {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .category-Premium {
+            background-color: #ffc107;
+            color: black;
+        }
+        
+        .category-Limited {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        /* Limited Edition Banner */
+        .limited-edition-banner {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #dc3545;
+            color: white;
+            padding: 0.35em 0.65em;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: 500;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        /* Remove the triangle decoration since category badges don't have it */
+        .limited-edition-banner:after {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -139,9 +231,6 @@ if (!$logged_in && !$is_guest) {
                     <?php endif; ?>
                     <?php if ($logged_in): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                     <?php endif; ?>
@@ -163,9 +252,34 @@ if (!$logged_in && !$is_guest) {
 
     <!-- Main Shop Content -->
     <div class="container">
+        <!-- Category Buttons -->
+        <div class="category-buttons text-center mb-4">
+            <a href="?category=all<?php echo !empty($search) ? '&search='.urlencode($search) : ''; ?>&sort=<?php echo $sort; ?>" 
+               class="btn category-btn <?php echo $category === 'all' ? 'active' : ''; ?>">
+                All Products
+                <span class="category-count">(<?php echo array_sum($categoryCounts); ?>)</span>
+            </a>
+            <a href="?category=Regular<?php echo !empty($search) ? '&search='.urlencode($search) : ''; ?>&sort=<?php echo $sort; ?>" 
+               class="btn category-btn <?php echo $category === 'Regular' ? 'active' : ''; ?>">
+                Regular
+                <span class="category-count">(<?php echo $categoryCounts['Regular'] ?? 0; ?>)</span>
+            </a>
+            <a href="?category=Premium<?php echo !empty($search) ? '&search='.urlencode($search) : ''; ?>&sort=<?php echo $sort; ?>" 
+               class="btn category-btn <?php echo $category === 'Premium' ? 'active' : ''; ?>">
+                Premium
+                <span class="category-count">(<?php echo $categoryCounts['Premium'] ?? 0; ?>)</span>
+            </a>
+            <a href="?category=Limited Edition<?php echo !empty($search) ? '&search='.urlencode($search) : ''; ?>&sort=<?php echo $sort; ?>" 
+               class="btn category-btn <?php echo $category === 'Limited Edition' ? 'active' : ''; ?>">
+                Limited Edition
+                <span class="category-count">(<?php echo $categoryCounts['Limited Edition'] ?? 0; ?>)</span>
+            </a>
+        </div>
+
         <!-- Filter Section -->
         <div class="filter-section">
             <form id="filterForm" class="row g-3">
+                <input type="hidden" name="category" value="<?php echo htmlspecialchars($category); ?>">
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="sort" class="form-label">Sort By</label>
@@ -199,6 +313,12 @@ if (!$logged_in && !$is_guest) {
                 <?php foreach ($products as $product): ?>
                 <div class="col">
                     <div class="card product-card">
+                        <?php if ($product['category'] === 'Limited Edition'): ?>
+                            <div class="limited-edition-banner">Limited Edition</div>
+                        <?php endif; ?>
+                        <span class="category-badge category-<?php echo str_replace(' ', '', $product['category']); ?>">
+                            <?php echo htmlspecialchars($product['category']); ?>
+                        </span>
                         <?php if ($product['image_url']): ?>
                             <img src="<?php echo htmlspecialchars($product['image_url']); ?>" class="card-img-top product-image" alt="<?php echo htmlspecialchars($product['name']); ?>">
                         <?php endif; ?>
@@ -238,7 +358,7 @@ if (!$logged_in && !$is_guest) {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
                 document.getElementById('filterForm').submit();
-            }, 500); // Wait 500ms after user stops typing
+            }, 500);
         });
     </script>
 </body>

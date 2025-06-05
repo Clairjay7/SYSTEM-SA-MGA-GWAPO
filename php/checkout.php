@@ -101,13 +101,13 @@ unset($_SESSION['error']); // Clear the error message after displaying
                 <input type="hidden" name="price" value="<?= $product_price; ?>">
 
                 <div class="form-group mb-3">
-                    <label for="quantity" class="form-label">Quantity:</label>
-                    <input type="number" class="form-control" id="quantity" name="quantity" min="1" max="<?= $product['quantity']; ?>" value="1" required>
+                    <label for="customer_name" class="form-label">Your Name:</label>
+                    <input type="text" class="form-control" id="customer_name" name="customer_name" required>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="customer_name" class="form-label">Your Name:</label>
-                    <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+                    <label for="quantity" class="form-label">Quantity:</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" min="1" max="<?= $product['quantity']; ?>" value="1" required>
                 </div>
 
                 <div class="form-group mb-3">
@@ -115,9 +115,20 @@ unset($_SESSION['error']); // Clear the error message after displaying
                     <select name="payment_method" id="payment_method" class="form-select" required>
                         <option value="">-- Select Payment Method --</option>
                         <option value="Cash">Cash</option>
-                        <option value="Gcash">Gcash</option>
-                        <option value="Paypal">Paypal</option>
+                        <option value="Gcash">GCash</option>
                     </select>
+                </div>
+
+                <div id="gcash-details" style="display: none;" class="mb-3">
+                    <div class="alert alert-info">
+                        <h5 class="text-center">GCash Payment Details</h5>
+                        <div class="text-center mb-3">
+                            <img src="../images/qr.jpg" alt="GCash QR Code" style="max-width: 200px; width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px;">
+                        </div>
+                        <p><strong>GCash Number:</strong> 09284959675</p>
+                        <p><strong>Account Name:</strong> Clair Jay Galorpot</p>
+                        <p class="mb-0"><small>Please scan the QR code or send payment to the GCash number above</small></p>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100" id="submitBtn">Complete Purchase</button>
@@ -133,6 +144,15 @@ unset($_SESSION['error']); // Clear the error message after displaying
             submitBtn.disabled = true;
             submitBtn.textContent = 'Processing...';
             this.submit();
+        });
+
+        document.getElementById('payment_method').addEventListener('change', function() {
+            const gcashDetails = document.getElementById('gcash-details');
+            if (this.value === 'Gcash') {
+                gcashDetails.style.display = 'block';
+            } else {
+                gcashDetails.style.display = 'none';
+            }
         });
     </script>
 </body>

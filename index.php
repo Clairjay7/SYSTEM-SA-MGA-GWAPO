@@ -286,14 +286,14 @@ unset($_SESSION['success_message']);
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="loginForm" method="POST" action="php/login_action.php" onsubmit="return validateForm()">
+                    <form id="loginForm" method="POST" action="php/login_action.php">
                         <div class="mb-4">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username">
+                            <input type="text" class="form-control" id="username" name="username" required>
                         </div>
                         <div class="mb-4">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary login-btn">Login</button>
@@ -305,14 +305,5 @@ unset($_SESSION['success_message']);
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
-    <script src="js/login.js"></script>
-    <script>
-        // Check for PHP session error on page load
-        <?php if (isset($_SESSION['error'])): ?>
-            checkSessionError('<?php echo $_SESSION['error']; ?>');
-            <?php unset($_SESSION['error']); ?>
-        <?php endif; ?>
-    </script>
 </body>
 </html>

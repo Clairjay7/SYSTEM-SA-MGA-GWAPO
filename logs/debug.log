@@ -1,0 +1,321 @@
+[2025-05-28 21:48:54] Received request: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 23242
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 21:48:54] Image uploaded successfully: images/products/683768a6ce520_513yGy11ljL.jpg
+[2025-05-28 21:48:54] Attempting to insert data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 23242
+    [stock_quantity] => 10
+    [status] => active
+    [image_url] => images/products/683768a6ce520_513yGy11ljL.jpg
+)
+
+[2025-05-28 21:48:54] SQL Query: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 21:48:54] Product added successfully with ID: 17
+[2025-05-28 22:00:21] Received request: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 22:00:21] Image uploaded successfully: images/products/68376b554a6b0_513yGy11ljL.jpg
+[2025-05-28 22:00:21] Attempting to insert data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [status] => active
+    [image_url] => images/products/68376b554a6b0_513yGy11ljL.jpg
+)
+
+[2025-05-28 22:00:21] SQL Query: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 22:00:23] Received request: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 22:00:23] Image uploaded successfully: images/products/68376b57137ad_513yGy11ljL.jpg
+[2025-05-28 22:00:23] Attempting to insert data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [status] => active
+    [image_url] => images/products/68376b57137ad_513yGy11ljL.jpg
+)
+
+[2025-05-28 22:00:23] SQL Query: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 22:00:23] Product added successfully with ID: 18
+[2025-05-28 22:00:23] Product added successfully with ID: 19
+[2025-05-28 22:07:55] Received request: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 22:07:55] Image uploaded successfully: images/products/68376d1b9f406_513yGy11ljL.jpg
+[2025-05-28 22:07:55] Attempting to insert data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [status] => active
+    [image_url] => images/products/68376d1b9f406_513yGy11ljL.jpg
+)
+
+[2025-05-28 22:07:55] SQL Query: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 22:07:55] Product added successfully with ID: 20
+[2025-05-28 22:32:05] Received request: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => 
+    [price] => 555.75
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 22:32:05] Image uploaded successfully: images/products/683772c596ad1_513yGy11ljL.jpg
+[2025-05-28 22:32:05] Attempting to insert data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => 
+    [price] => 555.75
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [status] => active
+    [image_url] => images/products/683772c596ad1_513yGy11ljL.jpg
+)
+
+[2025-05-28 22:32:05] SQL Query: INSERT INTO inventory (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 22:32:05] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'category' in 'field list'
+[2025-05-28 22:44:57] Received request: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 22:44:57] Image uploaded successfully: images/products/683775c93b1ae_513yGy11ljL.jpg
+[2025-05-28 22:44:57] Attempting to insert data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [status] => active
+    [image_url] => images/products/683775c93b1ae_513yGy11ljL.jpg
+)
+
+[2025-05-28 22:44:57] SQL Query: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 22:44:57] Product added successfully with ID: 21
+[2025-05-28 22:51:10] Received request: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 555.75
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 22:51:10] Image uploaded successfully: images/products/6837773e7649a_513yGy11ljL.jpg
+[2025-05-28 22:51:10] Attempting to insert data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 555.75
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [status] => active
+    [image_url] => images/products/6837773e7649a_513yGy11ljL.jpg
+)
+
+[2025-05-28 22:51:10] SQL Query: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 22:51:10] Product added successfully with ID: 22
+[2025-05-28 22:54:30] Received request: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 555.75
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 22:54:30] Image uploaded successfully: images/products/683778065d8c9_513yGy11ljL.jpg
+[2025-05-28 22:54:30] SQL Query for products table: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 22:54:30] SQL Query for inventory table: INSERT INTO inventory (name, description, price, quantity, image_url) VALUES (?, ?, ?, ?, ?)
+[2025-05-28 22:54:30] Product added successfully with ID: 23 and Inventory ID: 35
+[2025-05-28 23:08:09] Received request: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 555.75
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 23:08:09] Image uploaded successfully: images/products/68377b39d984f_513yGy11ljL.jpg
+[2025-05-28 23:08:09] SQL Query for products table: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 23:08:09] SQL Query for inventory table: INSERT INTO inventory (name, description, price, quantity, image_url) VALUES (?, ?, ?, ?, ?)
+[2025-05-28 23:08:09] Product added successfully with ID: 24 and Inventory ID: 36
+[2025-05-28 23:16:58] Received request: Array
+(
+    [name] => Hot Wheels Jeep Scrambler (Baja Blazers) 1:64 scale model
+    [sku] => 
+    [description] => Vrooom, vrooommmm!” Cool motor sounds, revvin’ tunes, flashy “chrome” wheels & accents and 12-volts of battery power make Hot Wheels™ Jeep® Wrangler the perfect vehicle for pretend “off-road” racing adventure! It offers realistic Jeep® vehicle styling including the Jeep® Wrangler grille,
+    [price] => 200
+    [stock_quantity] => 10
+    [category] => jeep
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 23:16:58] SQL Query for products table: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-28 23:16:58] SQL Query for inventory table: INSERT INTO inventory (name, description, price, quantity, image_url) VALUES (?, ?, ?, ?, ?)
+[2025-05-28 23:16:58] Product added successfully with ID: 25 and Inventory ID: 37
+[2025-05-29 00:03:50] Received request: Array
+(
+    [name] => Hot Wheels Jeep Scrambler (Baja Blazers) 1:64 scale model
+    [sku] => 
+    [description] => Jeep has been part of Chrysler since 1987, when Chrysler acquired the Jeep brand, along with other assets, from their previous owner American Motors Corporation (AMC).
+    [price] => 199
+    [stock_quantity] => 10
+    [category] => jeep
+    [brand] => toyota
+    [status] => active
+    [image_type] => url
+    [image_url] => https://filebroker-cdn.lazada.com.ph/kf/Se178c192078e4b0bb460ecf17cf01c06f.jpg
+)
+
+[2025-05-29 00:03:50] Using image URL: https://filebroker-cdn.lazada.com.ph/kf/Se178c192078e4b0bb460ecf17cf01c06f.jpg
+[2025-05-29 00:03:50] SQL Query for products table: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-05-29 00:03:51] SQL Query for inventory table: INSERT INTO inventory (name, description, price, quantity, image_url) VALUES (?, ?, ?, ?, ?)
+[2025-05-29 00:03:51] Product added successfully with ID: 26 and Inventory ID: 38
+[2025-06-03 21:09:51] Received request: Array
+(
+    [name] => Jul Bolando
+    [barcode] => 6522955124540
+    [description] => dsadsadsa
+    [price] => 2
+    [stock_quantity] => 4
+    [image_type] => file
+    [image_url] => 
+)
+
+[2025-06-03 21:09:51] Image uploaded successfully: /SYSTEM-SA-MGA-GWAPO/images/products/683f487f5bb12_escobar.jpg
+[2025-06-03 21:09:51] SQL Query for products table: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-06-03 21:09:51] SQL Query for inventory table: INSERT INTO inventory (name, description, price, quantity, image_url) VALUES (?, ?, ?, ?, ?)
+[2025-06-03 21:09:51] Product added successfully with ID: 27 and Inventory ID: 35
+[2025-06-03 21:13:06] Received request: Array
+(
+    [name] => Lynnies
+    [barcode] => 2535084665299
+    [description] => dasdsa
+    [price] => 1000.75
+    [stock_quantity] => 232
+    [image_type] => file
+    [image_url] => 
+)
+
+[2025-06-03 21:13:06] Image uploaded successfully: /SYSTEM-SA-MGA-GWAPO/images/products/683f494220262_491034412_1017483053667080_4253557146667369093_n.jpg
+[2025-06-03 21:13:06] SQL Query for products table: INSERT INTO products (name, description, price, category, brand, sku, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-06-03 21:13:06] SQL Query for inventory table: INSERT INTO inventory (name, description, price, quantity, image_url) VALUES (?, ?, ?, ?, ?)
+[2025-06-03 21:13:06] Product added successfully with ID: 28 and Inventory ID: 36
+[2025-06-03 21:15:23] Received request: Array
+(
+    [name] => dasdsa
+    [barcode] => 3314280988873
+    [description] => dsadsa
+    [price] => 2
+    [stock_quantity] => 2
+    [image_type] => file
+    [image_url] => 
+)
+
+[2025-06-03 21:15:23] Image uploaded successfully: /SYSTEM-SA-MGA-GWAPO/images/products/683f49cb22cac_11.jpg
+[2025-06-03 21:15:23] SQL Query for products table: INSERT INTO products (name, description, price, category, brand, sku, barcode, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-06-03 21:15:23] SQL Query for inventory table: INSERT INTO inventory (name, description, price, quantity, image_url, barcode) VALUES (?, ?, ?, ?, ?, ?)
+[2025-06-03 21:15:23] Product added successfully with ID: 29 and Inventory ID: 37
+[2025-06-03 21:31:20] Received request: Array
+(
+    [name] => dsadsa
+    [barcode] => 4205510079485
+    [description] => dsadsad
+    [price] => 2
+    [stock_quantity] => 5
+    [image_type] => file
+    [image_url] => 
+)
+
+[2025-06-03 21:31:20] Image uploaded successfully: /SYSTEM-SA-MGA-GWAPO/images/products/683f4d88b39eb_child.png
+[2025-06-03 21:31:20] SQL Query for products table: INSERT INTO products (name, description, price, category, brand, sku, barcode, stock_quantity, status, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[2025-06-03 21:31:20] SQL Query for inventory table: INSERT INTO inventory (name, description, price, quantity, image_url, barcode) VALUES (?, ?, ?, ?, ?, ?)
+[2025-06-03 21:31:20] Product added successfully with ID: 30 and Inventory ID: 38

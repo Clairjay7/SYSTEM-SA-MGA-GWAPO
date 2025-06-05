@@ -1,0 +1,216 @@
+[2025-05-28 21:36:17] Received product data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 21:36:17] Received image data: Array
+(
+    [name] => 513yGy11ljL.jpg
+    [full_path] => 513yGy11ljL.jpg
+    [type] => image/jpeg
+    [tmp_name] => D:\JUL\xampp\tmp\php439F.tmp
+    [error] => 0
+    [size] => 65179
+)
+
+[2025-05-28 21:36:17] Executing SQL with params: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [image_url] => images/products/683765b144b77_513yGy11ljL.jpg
+    [status] => active
+)
+
+[2025-05-28 21:36:17] Database error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'sku'
+[2025-05-28 21:36:25] Received product data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 21:36:25] Received image data: Array
+(
+    [name] => 513yGy11ljL.jpg
+    [full_path] => 513yGy11ljL.jpg
+    [type] => image/jpeg
+    [tmp_name] => D:\JUL\xampp\tmp\php6447.tmp
+    [error] => 0
+    [size] => 65179
+)
+
+[2025-05-28 21:36:25] Executing SQL with params: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [image_url] => images/products/683765b9a2d0b_513yGy11ljL.jpg
+    [status] => active
+)
+
+[2025-05-28 21:36:25] Database error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'sku'
+[2025-05-28 21:36:55] Received product data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 21:36:55] Received image data: Array
+(
+    [name] => 513yGy11ljL.jpg
+    [full_path] => 513yGy11ljL.jpg
+    [type] => image/jpeg
+    [tmp_name] => D:\JUL\xampp\tmp\phpD7F2.tmp
+    [error] => 0
+    [size] => 65179
+)
+
+[2025-05-28 21:36:55] Executing SQL with params: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [image_url] => images/products/683765d7436a7_513yGy11ljL.jpg
+    [status] => active
+)
+
+[2025-05-28 21:36:55] Database error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'sku'
+[2025-05-28 21:38:36] Received product data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 21:38:36] Received image data: Array
+(
+    [name] => 513yGy11ljL.jpg
+    [full_path] => 513yGy11ljL.jpg
+    [type] => image/jpeg
+    [tmp_name] => D:\JUL\xampp\tmp\php61BF.tmp
+    [error] => 0
+    [size] => 65179
+)
+
+[2025-05-28 21:38:36] Executing SQL with params: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [image_url] => images/products/6837663c0bbb4_513yGy11ljL.jpg
+    [status] => active
+)
+
+[2025-05-28 21:38:36] Product added successfully with ID: 14
+[2025-05-28 21:44:05] Received product data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 21:44:05] Received image data: Array
+(
+    [name] => 513yGy11ljL.jpg
+    [full_path] => 513yGy11ljL.jpg
+    [type] => image/jpeg
+    [tmp_name] => D:\JUL\xampp\tmp\php689E.tmp
+    [error] => 0
+    [size] => 65179
+)
+
+[2025-05-28 21:44:05] Executing SQL with params: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [image_url] => images/products/68376785c1a32_513yGy11ljL.jpg
+    [status] => active
+)
+
+[2025-05-28 21:44:05] Product added successfully with ID: 15
+[2025-05-28 21:45:56] Received product data: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [sku] => 
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [stock_quantity] => 10
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [status] => active
+)
+
+[2025-05-28 21:45:56] Received image data: Array
+(
+    [name] => 513yGy11ljL.jpg
+    [full_path] => 513yGy11ljL.jpg
+    [type] => image/jpeg
+    [tmp_name] => D:\JUL\xampp\tmp\php1B02.tmp
+    [error] => 0
+    [size] => 65179
+)
+
+[2025-05-28 21:45:56] Executing SQL with params: Array
+(
+    [name] => Hot Wheels Toyota Supra HW The 90S Ages 3 and Up by Small CLAP (Green)
+    [description] => The Toyota Supra is a sports car produced by Toyota since 1978. Its name is derived from the Latin term "supra", translating to "to go beyond". 
+    [price] => 150
+    [category] => Fast & Furious sets
+    [brand] => toyota
+    [sku] => 
+    [stock_quantity] => 10
+    [image_url] => images/products/683767f4a8258_513yGy11ljL.jpg
+    [status] => active
+)
+
+[2025-05-28 21:45:56] Product added successfully with ID: 16

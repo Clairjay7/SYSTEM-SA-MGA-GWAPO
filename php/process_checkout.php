@@ -25,18 +25,19 @@ foreach ($required_fields as $field) {
 
 // Get form data
 $product_id = $_POST['product_id'];
-$customer_name = $_POST['customer_name'];
-$quantity = (int)$_POST['quantity'];
+$customer_name = trim($_POST['customer_name']);
+$quantity = intval($_POST['quantity']);
 $payment_method = $_POST['payment_method'];
 $product_name = $_POST['name'];
 $price = (float)$_POST['price'];
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 try {
     // Start transaction
     $pdo->beginTransaction();
 
     // Check if product exists and has enough stock
-    $stmt = $pdo->prepare("SELECT quantity FROM inventory WHERE id = ? AND quantity >= ?");
+    $stmt = $pdo->prepare("SELECT * FROM inventory WHERE id = ? AND quantity >= ? AND deleted_at IS NULL");
     $stmt->execute([$product_id, $quantity]);
     $product = $stmt->fetch();
 
@@ -44,30 +45,44 @@ try {
         throw new Exception("Product not available or insufficient stock");
     }
 
-    // Calculate total amount
-    $total_amount = $price * $quantity;
+    // Keep original unit price and calculate total amount
+    $unit_price = $price;  // Original price per item
+    $total_amount = $quantity * $unit_price;  // Total is quantity × unit price
 
-    // Create order with pending status
+    // Create order
     $stmt = $pdo->prepare("
         INSERT INTO orders (
-            product_id, 
-            customer_name, 
-            quantity, 
-            price, 
-            payment_method, 
-            status
-        ) VALUES (?, ?, ?, ?, ?, 'pending')
+            product_id,
+            customer_name,
+            quantity,
+            price,
+            payment_method,
+            status,
+            created_at
+        ) VALUES (?, ?, ?, ?, ?, 'pending', CURRENT_TIMESTAMP)
     ");
-    
+
     $stmt->execute([
         $product_id,
         $customer_name,
         $quantity,
-        $total_amount,
+        $product['price'],
         $payment_method
     ]);
-    
+
     $order_id = $pdo->lastInsertId();
+
+    // Create transaction log entry
+    $stmt = $pdo->prepare("
+        INSERT INTO transaction_logs (
+            order_id,
+            type,
+            amount,
+            status,
+            created_at
+        ) VALUES (?, 'purchase', ?, 'pending', CURRENT_TIMESTAMP)
+    ");
+    $stmt->execute([$order_id, $total_amount]);
 
     // Commit transaction
     $pdo->commit();
@@ -86,8 +101,8 @@ try {
     // Ensure the session is written
     session_write_close();
 
-    // Redirect to receipt
-    header("Location: receipt.php");
+    // Redirect to receipt page instead of shop
+    header('Location: receipt.php?order_id=' . $order_id);
     exit();
 
 } catch (Exception $e) {
@@ -96,8 +111,8 @@ try {
         $pdo->rollBack();
     }
     
-    $_SESSION['error'] = "Error processing order: " . $e->getMessage();
-    header("Location: checkout.php");
+    $_SESSION['error'] = "Error placing order: " . $e->getMessage();
+    header('Location: checkout.php');
     exit();
 }
 ?>
